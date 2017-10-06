@@ -10,7 +10,7 @@
 	
 	<!-- 별칭 -->
 	<typeAliases>
-<!-- 		<typeAlias alias="allianceDTO" type="tm.alliance.dto.AllianceDTO" /> -->
+ 		<typeAlias alias="testDTO" type="farm.test.dto.testDTO" /> 
 	</typeAliases>
 
 </configuration>
