@@ -13,11 +13,15 @@ public class TestContoroller {
 	@Autowired
 	TestDAO dao;
 	@RequestMapping("/member.farm")
-	public ModelAndView test(TestDTO dto) {
+	public ModelAndView test(String user_id, String user_name, String user_email, String user_phone) {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		System.out.println(dto.user_id);
+		TestDTO dto = new TestDTO(user_id, user_name, user_phone, user_email);
+		
+		int result = dao.insert(dto);
+		
+		System.out.println(result);
 		mv.setViewName("index");
 		return mv;
 	}

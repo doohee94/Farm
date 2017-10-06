@@ -3,7 +3,7 @@
  <mapper namespace="test">
  
  	<insert id="insert" parameterType="farm.test.TestDTO">
- 		insert into user (user_id, user_name) values(#{userId},#{userName})
+ 		insert into user (user_id, user_name,user_phone,user_email) values(#{user_id},#{user_name},#{user_phone},#{user_email})
  	</insert>
  
  
