@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- 오라클 필드 속성이 언더 스코어가 있을 때  카멜 케이스로 변환  -->
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	
+	<!-- 별칭 -->
+	<typeAliases>
+<!-- 		<typeAlias alias="allianceDTO" type="tm.alliance.dto.AllianceDTO" /> -->
+	</typeAliases>
+
+</configuration>

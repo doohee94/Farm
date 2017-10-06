@@ -2,11 +2,42 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>Farm</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  
+   <!-- 스프링 서블릿 진입점(front-controller) -->
+  	<servlet>
+  		<servlet-name>SpringMybatis</servlet-name>
+  		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+  		<!-- 스트링 설정파일 위치 설정 -->
+  	<init-param>
+  		<param-name>contextConfigLocation</param-name>
+  		<param-value>
+  		<!-- /WEB-INF/springconfig/common-servlet.xml 이런식으로 추가  -->
+  		
+  		</param-value>	
+  	</init-param>	
+  	</servlet>
+  	
+  <servlet-mapping>
+  	<servlet-name>SpringMybatis</servlet-name>
+  	<url-pattern>*.farm</url-pattern>
+  </servlet-mapping>
+  
+  	<!-- 한글 인코딩 -->
+  <filter>
+  	<filter-name>CharacterEncoding</filter-name>
+  	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+  	<init-param>
+  		<param-name>encoding</param-name>
+  		<param-value>UTF-8</param-value>
+  	</init-param>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>CharacterEncoding</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  	
 </web-app>
