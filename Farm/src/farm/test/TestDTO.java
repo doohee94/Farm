@@ -2,49 +2,45 @@ package farm.test;
 
 public class TestDTO {
 
-	String userId;
-	String userName;
-	String userPhone;
-	String userEmail;
-	String userPhoto;
-	String userPhotofake;
-	public String getUserId() {
-		return userId;
+	String user_id;
+	String user_name;
+	String user_phone;
+	String user_email;
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
-	public String getUserName() {
-		return userName;
+	public String getUser_name() {
+		return user_name;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
 	}
-	public String getUserPhone() {
-		return userPhone;
+	public String getUser_phone() {
+		return user_phone;
 	}
-	public void setUserPhone(String userPhone) {
-		this.userPhone = userPhone;
+	public void setUser_phone(String user_phone) {
+		this.user_phone = user_phone;
 	}
-	public String getUserEmail() {
-		return userEmail;
+	public String getUser_email() {
+		return user_email;
 	}
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
-	}
-	public String getUserPhoto() {
-		return userPhoto;
-	}
-	public void setUserPhoto(String userPhoto) {
-		this.userPhoto = userPhoto;
-	}
-	public String getUserPhotofake() {
-		return userPhotofake;
-	}
-	public void setUserPhotofake(String userPhotofake) {
-		this.userPhotofake = userPhotofake;
+	public void setUser_email(String user_email) {
+		this.user_email = user_email;
 	}
 	
+	
+	public TestDTO(String user_id, String user_name, String user_phone, String user_email) {
+		super();
+		this.user_id = user_id;
+		this.user_name = user_name;
+		this.user_phone = user_phone;
+		this.user_email = user_email;
+	}
+	
+
 	
 	
 	

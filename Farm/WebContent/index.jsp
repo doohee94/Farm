@@ -8,10 +8,14 @@
 </head>
 <body>
 
-	<form action="/test/member.farm" method="post">
+	<form action="/test/member.farm" method="get">
 		아이디<input  id="user_id" type="text" name="user_id">
 		이름<input  id="user_name" type="text" name="user_name">
-		<button type="submit"></button>
+		이메일<input  id="user_emain" type="text" name="user_emain">
+		폰<input  id="user_phone" type="text" name="user_phone">
+		
+		<button type="submit">전송</button>
+		
 	</form>
 	
 </body>

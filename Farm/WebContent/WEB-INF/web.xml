@@ -14,8 +14,8 @@
   	<init-param>
   		<param-name>contextConfigLocation</param-name>
   		<param-value>
-  		<!-- /WEB-INF/springconfig/common-servlet.xml 이런식으로 추가  -->
-  		
+  		/WEB-INF/springconfig/common-servlet.xml
+  		/WEB-INF/springconfig/test-servlet.xml
   		</param-value>	
   	</init-param>	
   	</servlet>
