@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,7 +32,7 @@
 	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
 		id="mainNav">
-		<a class="navbar-brand" href="main.jsp">농사꾼님의 농장관리</a>
+		<a class="navbar-brand" href="/farmer/farmer_main.farm">농사꾼님의 농장관리</a>
 		<button class="navbar-toggler navbar-toggler-right" type="button"
 			data-toggle="collapse" data-target="#navbarResponsive"
 			aria-controls="navbarResponsive" aria-expanded="false"
@@ -44,11 +42,11 @@
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
 				<li class="nav-item" data-toggle="tooltip" data-placement="right"
-					title="Dashboard"><a class="nav-link" href="myInfo.jsp"> <i
+					title="Dashboard"><a class="nav-link" href="/farmer/myInfo.farm"> <i
 						class="fa fa-fw fa-dashboard"></i> <span class="nav-link-text">내정보</span>
 				</a></li>
 				<li class="nav-item" data-toggle="tooltip" data-placement="right"
-					title="Charts"><a class="nav-link" href="applyReady.jsp">
+					title="Charts"><a class="nav-link" href="/farmer/applyReady.farm">
 						<i class="fa fa-fw fa-area-chart"></i> <span class="nav-link-text">승인대기농장</span>
 				</a></li>
 				<li class="nav-item" data-toggle="tooltip" data-placement="right"
@@ -58,13 +56,10 @@
 						class="fa fa-fw fa-wrench"></i> <span class="nav-link-text">내농장</span>
 				</a>
 					<ul class="sidenav-second-level collapse" id="collapseComponents">
-						<li><a href="farmInfo.jsp">농장정보</a></li>
-						<li><a href="farmDiary.jsp">농장일기</a></li>
+						<li><a href="/farmer/farmInfo.farm">농장정보</a></li>
+						<li><a href="/farmer/farmDiary.farm">농장일기</a></li>
 					</ul></li>
-				<li class="nav-item" data-toggle="tooltip" data-placement="right"
-					title="Link"><a class="nav-link" href="fastFarm.jsp"> <i
-						class="fa fa-fw fa-link"></i> <span class="nav-link-text">농사이력</span>
-				</a></li>
+				
 			</ul>
 			<ul class="navbar-nav sidenav-toggler">
 				<li class="nav-item"><a class="nav-link text-center"
@@ -74,7 +69,7 @@
 			<ul class="navbar-nav ml-auto">
 
 				<li class="nav-item" data-toggle="tooltip" data-placement="right"
-					title="Link"><a class="nav-link" href="../main/index.html">
+					title="Link"><a class="nav-link" href="farm/main.farm">
 						<i class="fa fa-fw fa-link"></i> <span class="nav-link-text">메인가기</span>
 				</a></li>
 				<li class="nav-item">
@@ -100,7 +95,7 @@
 		<div class="container-fluid">
 			<!-- Breadcrumbs-->
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="main.jsp">농사꾼님의 농장</a>
+				<li class="breadcrumb-item"><a href="/farmer/farmer_main.farm">농사꾼님의 농장</a>
 				</li>
 			</ol>
 			<div class="row">

@@ -19,6 +19,9 @@
 	</form>
 	
 	<a href="">농장검색리스트</a>
-	
+	<br/><br/><br/><br/>
+	도히꺼
+	<br/><a href="farm/main.farm">메인으로가기!</a>
+	<br/><a href="farmer/farmer_main.farm">농사꾼메인 으로가기!</a>
 </body>
 </html>

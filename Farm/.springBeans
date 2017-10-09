@@ -9,6 +9,8 @@
 	<configs>
 		<config>WebContent/WEB-INF/springconfig/common-servlet.xml</config>
 		<config>WebContent/WEB-INF/springconfig/test-servlet.xml</config>
+		<config>WebContent/WEB-INF/springconfig/main-servlet.xml</config>
+		<config>WebContent/WEB-INF/springconfig/farmer_servlet.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

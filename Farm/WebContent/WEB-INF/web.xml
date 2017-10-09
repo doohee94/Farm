@@ -16,6 +16,8 @@
   		<param-value>
   		/WEB-INF/springconfig/common-servlet.xml
   		/WEB-INF/springconfig/test-servlet.xml
+  		/WEB-INF/springconfig/main-servlet.xml
+  		/WEB-INF/springconfig/farmer_servlet.xml
   		</param-value>	
   	</init-param>	
   	</servlet>
