@@ -73,7 +73,7 @@
 			<ul class="navbar-nav ml-auto">
 
 				<li class="nav-item" data-toggle="tooltip" data-placement="right"
-					title="Link"><a class="nav-link" href="farm/main.farm">
+					title="Link"><a class="nav-link" href="/farm/main.farm">
 						<i class="fa fa-fw fa-link"></i> <span class="nav-link-text">메인가기</span>
 				</a></li>
 				<li class="nav-item">
