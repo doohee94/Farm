@@ -30,7 +30,7 @@ public class TestController {
 		System.out.println("테스트 컨트롤러");
 		
 		int res = dao.insertUser(testDTO);
-		
+		System.out.println("res>>>>>"+res);
 		
 		return dir+"testOk";
 	}
