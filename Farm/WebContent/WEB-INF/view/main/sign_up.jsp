@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>    
-    
 <!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <title>Sailor - Bootstrap 3 corporate template</title>
@@ -26,7 +25,6 @@
     Author: BootstrapMade
     Author URL: https://bootstrapmade.com
 ======================================================= -->
-
 </head>
 <body>
 
@@ -79,150 +77,121 @@
 <!--                             </ul>				 -->
 						
 <!-- 						</li>         -->
-						<li><a href="main.farm">홈</a></li>         
-                        <li><a href="#">농장찾기</a></li>  
-                        <c:choose>
-                        	<c:when test="${not empty sessionScope.user_id }">
-                        		<li><a href="/farmer/farmer_main.farm">마이페이지</a></li>
-                        	</c:when>
-                        	<c:otherwise>
-                        		<li><a href="login.farm">로그인</a></li>
-                        	</c:otherwise>
-                        </c:choose>                   
-                        
+						<li><a href="index.html">홈</a></li>         
+                        <li><a href="portfolio.html">농장찾기</a></li>                     
+                        <li><a href="login.html">로그인</a></li>
                     </ul>
                 </div>
             </div>
         </div>
 	</header>
 	<!-- end header -->
-	<section id="featured" class="bg">
-	<!-- start slider -->
-
-			
-	<!-- start slider -->
+	<section id="inner-headline">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-	<!-- Slider -->
-        <div id="main-slider" class="main-slider flexslider">
-            <ul class="slides">
-              <li>
-                <img src="/resource/main/img/slides/flexslider/1.jpg" alt="" />
-                <div class="flex-caption">
-                    <h3>Modern Design</h3> 
-					<p>Duis fermentum auctor ligula ac malesuada. Mauris et metus odio, in pulvinar urna</p> 
-					<a href="#" class="btn btn-theme">Learn More</a>
-                </div>
-              </li>
-              <li>
-                <img src="/resource/main/img/slides/flexslider/2.jpg" alt="" />
-                <div class="flex-caption">
-                    <h3>Fully Responsive</h3> 
-					<p>Sodales neque vitae justo sollicitudin aliquet sit amet diam curabitur sed fermentum.</p> 
-					<a href="#" class="btn btn-theme">Learn More</a>
-                </div>
-              </li>
-              <li>
-                <img src="/resource/main/img/slides/flexslider/3.jpg" alt="" />
-                <div class="flex-caption">
-                    <h3>Clean & Fast</h3> 
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit donec mer lacinia.</p> 
-					<a href="#" class="btn btn-theme">Learn More</a>
-                </div>
-              </li>
-            </ul>
-        </div>
-	<!-- end slider -->
+				<ul class="breadcrumb">
+					<li><a href="#"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
+					<li class="active">농사꾼 회원가입</li>
+				</ul>
 			</div>
 		</div>
-	</div>	
-
-
+	</div>
 	</section>
-	
-	
 	<section id="content">
-		
-	<!-- parallax  -->
-	<div id="parallax1" class="parallax text-light text-center marginbot50" data-stellar-background-ratio="0.5">	
-           <div class="container">
-				<div class="row appear stats">
-					<div class="col-xs-6 col-sm-3 col-md-3">
-						<div class="align-center color-white txt-shadow">
-							<div class="icon">
-								<i class="fa fa-user fa-5x"></i>
-							</div>
-						<strong id="counter-coffee" class="number">1232</strong><br />
-						<span class="text">농사꾼</span>
-						</div>
+<div class="container">
+
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+		<form role="form" class="register-form" action="user_regist.farm" method="post">
+			<h2>Please Sign Up <small>동상이농</small></h2>
+			<hr class="colorgraph">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+                        <input type="text" name="userId" id="userId" class="form-control input-lg" placeholder="ID를입력하세요" tabindex="1">
 					</div>
-					<div class="col-xs-6 col-sm-3 col-md-3">
-						<div class="align-center color-white txt-shadow">
-							<div class="icon">
-								<i class="fa fa-male fa-5x"></i>
-							</div>
-						<strong id="counter-music" class="number">345</strong><br />
-						<span class="text">농장주</span>
-						</div>
+				</div>		
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+                        <input type="text" name="id_check" id="id_check" class="form-control input-lg" tabindex="1">
 					</div>
-					<div class="col-xs-6 col-sm-3 col-md-3">
-						<div class="align-center color-white txt-shadow">
-							<div class="icon">
-								<i class="fa fa-leaf fa-5x"></i>
-							</div>
-						<strong id="counter-clock" class="number">501</strong><br />
-						<span class="text">농장</span>
-						</div>
-					</div>
-					<div class="col-xs-6 col-sm-3 col-md-3">
-						<div class="align-center color-white txt-shadow">
-							<div class="icon">
-								<i class="fa fa-credit-card fa-5x"></i>
-							</div>
-						<strong id="counter-heart" class="number">378</strong><br />
-						<span class="text">결제</span>
-						</div>
+				</div>	
+			</div>
+			<div class="form-group">
+				<input type="text" name="userName" id="userName" class="form-control input-lg" placeholder="이름을 입력하세요" tabindex="3">
+			</div>
+			<div class="form-group">
+				<input type="text" name="userPhone" id="userPhone" class="form-control input-lg" placeholder="연락처를 입력하세요" tabindex="4">
+			</div>
+				<div class="form-group">
+				<input type="email" name="userEmail" id="userEmail" class="form-control input-lg" placeholder="email를 입력하세요" tabindex="4">
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<input type="password" name="userPass" id="userPass" class="form-control input-lg" placeholder="Password" tabindex="5">
 					</div>
 				</div>
-            </div>
-	</div>	 
-		
-		
-		<!-- divider -->
-		<div class="container">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<input type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
+					</div>
+				</div>
+			</div>			
+			<hr class="colorgraph">
+			<div class="row">
+				<div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-theme btn-block btn-lg" tabindex="7" id="register"></div>
+				<div class="col-xs-12 col-md-6">이미 계정이 있으신가요? <a href="login.farm">로그인</a></div>
+			</div> 
+			
+		</form>
+	</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
+			</div>
+			<div class="modal-body">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
+	</section>
+
+	<footer>
+	<div class="container">
 		<div class="row">
-			<div class="col-lg-12">
-				<div class="solidline">
+			<div class="col-lg-3">
+				
+			</div>
+			<div class="col-lg-3">
+				<div class="widget">
+					
+				</div>
+			</div>
+			<div class="col-lg-3">
+				<div class="widget">
+					
+				</div>
+			</div>
+			<div class="col-lg-3">
+				<div class="widget">
+					
 				</div>
 			</div>
 		</div>
-		</div>
-		<!-- end divider -->
-	
-	
-		
-		
-		<div class="container">
-				<div class="row">
-								<div class="col-xs-6 col-md-2 aligncenter client">
-									<img alt="logo" src="/resource/main/img/clients/logo1.png" class="img-responsive" />
-								</div>											
-													
-								<div class="col-xs-6 col-md-2 aligncenter client">
-									<img alt="logo" src="/resource/main/img/clients/logo2.png" class="img-responsive" />
-								</div>											
-													
-								<div class="col-xs-6 col-md-2 aligncenter client">
-									<img alt="logo" src="/resource/main/img/clients/logo3.png" class="img-responsive" />
-								</div>											
-													
-				</div>
-		</div>
-	
-	</section>
-	
-	<footer>
+	</div>
 	<div id="sub-footer">
 		<div class="container">
 			<div class="row">
@@ -253,9 +222,11 @@
 		</div>
 	</div>
 	</footer>
+	
 </div>
 <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
-
+<!-- javascript
+    ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="/resource/main/js/jquery.min.js"></script>
 <script src="/resource/main/js/modernizr.custom.js"></script>
@@ -271,7 +242,11 @@
 <script src="/resource/main/js/google-code-prettify/prettify.js"></script>
 <script src="/resource/main/js/animate.js"></script>
 <script src="/resource/main/js/custom.js"></script>
+<script type="text/javascript">
 
-	
+
+
+</script>
+
 </body>
 </html>

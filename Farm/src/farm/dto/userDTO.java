@@ -8,8 +8,15 @@ public class userDTO {
 	String userEmail;
 	String userPhoto;
 	String userPhotofake;
+	String userPass;
 	
 	
+	public String getUserPass() {
+		return userPass;
+	}
+	public void setUserPass(String userPass) {
+		this.userPass = userPass;
+	}
 	public String getUserId() {
 		return userId;
 	}

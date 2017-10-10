@@ -8,7 +8,14 @@ public class farmrentDTO {
 	String rentStartdate;
 	String rentEnddate;
 	int rentState;
+	String rentDate;
 	
+	public String getRentDate() {
+		return rentDate;
+	}
+	public void setRentDate(String rentDate) {
+		this.rentDate = rentDate;
+	}
 	public int getRentNum() {
 		return rentNum;
 	}

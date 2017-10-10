@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main">
+	<!-- 농사꾼 회원가입 -->
+	<insert id="user_insert" parameterType="userDTO">
+		insert into user(user_id, user_name, user_phone,user_email,user_pass) 
+					values(#{userId},#{userName},#{userPhone},#{userEmail},#{userPass})
+	</insert>
+	
+	<!-- 농장주 회원가입 -->
+	<insert id="owner_insert" parameterType="ownerDTO">
+		INSERT INTO owner (owner_id, owner_pass, owner_name, owner_phone, owner_account)
+					values(#{ownerId},#{ownerPass},#{ownerName},#{ownerPhone},#{ownerAccount})
+	</insert>
+	
+	<!--  농사꾼 로그인 -->
+	<select id="user_login" parameterType="hashmap" resultType="java.lang.String">
+		SELECT user_id FROM user WHERE (user_id=#{user_id} AND user_pass=#{user_pass})
+	</select>
+	<!--  농장주 로그인 -->
+	<select id="owner_login"  parameterType="hashmap" resultType="java.lang.String">
+		SELECT owner_id FROM owner WHERE (owner_id=#{user_id} AND owner_pass=#{user_pass})	
+	</select>
+	
+</mapper>

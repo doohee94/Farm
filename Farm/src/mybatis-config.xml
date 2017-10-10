@@ -11,6 +11,8 @@
 	<!-- 별칭 -->
 	<typeAliases>
  		<typeAlias alias="testDTO" type="farm.test.dto.testDTO" /> 
+ 		<typeAlias alias="userDTO" type="farm.dto.userDTO" /> 
+ 		<typeAlias alias="ownerDTO" type="farm.dto.ownerDTO" /> 
 	</typeAliases>
 
 </configuration>
