@@ -164,7 +164,7 @@
 													<div class="cbp-caption-activeWrap">
 														<div class="cbp-l-caption-alignCenter">
 															<div class="cbp-l-caption-body">
-																<a href="/farmlist/showFarmInfo.farm?farmNum=${fl.farmNum }"
+																<a href="showFarmInfo.farm?farmNum=${fl.farmNum }"
 																	class="cbp-l-caption-buttonRight">농장가기</a>
 															</div>
 														</div>

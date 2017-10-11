@@ -152,7 +152,7 @@
 				</div>
 				
 				<br></br>
-				<form action="farmlist/goApplyRegion.farm">
+				<form action="goApplyRegion.farm">
 				<input type="hidden" value="${farmInfo.farmNum }" name="farmNum" />
 				<div class="row">
 					<div class="col-xs-12 col-md-6"><input type="submit" value="분양신청" class="btn btn-theme btn-block btn-lg" tabindex="7"></div>

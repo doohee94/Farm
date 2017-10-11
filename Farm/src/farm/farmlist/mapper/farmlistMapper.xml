@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="farmlist">
+
+	<select id="farmList" resultType="farmDTO">
+		SELECT *
+		FROM farm
+	</select>
+
+
+	<select id="showFarminfo" parameterType="hashMap" resultType="farmDTO">
+		SELECT *
+		FROM farm
+		WHERE farm_num = #{farmNum}
+	</select>
+	
+	<select id="showRegionInfo" parameterType="hashMap" resultType="regioninfoDTO">
+		SELECT *
+		FROM regionInfo
+		WHERE farm_num = #{farmNum}
+	</select>
+	
+	<select id="getUserInfo" parameterType="hashMap" resultType="userDTO">
+		SELECT *
+		FROM user
+		WHERE user_id = #{userId}
+	</select>
+</mapper>
