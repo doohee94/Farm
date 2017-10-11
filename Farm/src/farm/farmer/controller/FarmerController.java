@@ -138,7 +138,7 @@ public class FarmerController {
 			JSONObject temp  = new JSONObject();
 			temp.put("id", list.get(i).getDiaryNum());
 			temp.put("title", list.get(i).getDiaryTitle());
-			
+			temp.put("start", list.get(i).getDiaryDate());
 			diaryList.add(temp);
 		}
 		return diaryList;
