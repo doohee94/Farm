@@ -106,27 +106,36 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-                        <input type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1">
+                        <input type="text" name="first_name" id="first_name" class="form-control input-lg" value="${userInfo.userName }" tabindex="1">
 					</div>
 				</div>
 			</div>
 			연락처  
 			<div class="form-group">
-				<input type="text" name="display_name" id="display_name" class="form-control input-lg" placeholder="Display Name" tabindex="3">
+				<input type="text" name="display_name" id="display_name" class="form-control input-lg" value="${userInfo.userPhone }" tabindex="3">
 			</div>
 			이메일
 			<div class="form-group">
-				<input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
+				<input type="email" name="email" id="email" class="form-control input-lg" value="${userInfo.userEmail }" tabindex="4">
 			</div>
 			희망구역
 			<div class="form-group">
-			<!-- 셀렉트박스@@ -->
-                <select id="regionSelectBox" style="width:50%">
-               <option value="1">1구역</option>
-               <option value="2">2구역</option>
-               <option value="3">3구역</option>
-        	</select>
-        	</div>
+				<c:choose>
+					<c:when test="${regionInfo == null }">
+					<!-- 셀렉트박스@@ -->
+				<select id="regionSelectBox" style="width: 50%">
+						<option >구역이 없습니다.</option>
+						</select>
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${regionInfo }" var="ri">
+						<select id="regionSelectBox" style="width: 50%">
+							<option value="${ri.regionNum }">${ri.regionName }  임대가격(개월 당): ${ri.regionSize }</option>
+						</select>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose> 
+			</div>
         	농사시작날짜
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
@@ -142,10 +151,6 @@
                         <input type="text" name="first_name" id="month" class="form-control input-lg" placeholder="First Name" tabindex="1">
 					</div>
 				</div>
-			</div>
-			가격
-			<div class="form-group">
-				100000원
 			</div>
 			
 			<hr class="colorgraph">

@@ -1,5 +1,7 @@
 package farm.main.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.mysql.jdbc.interceptors.SessionAssociationInterceptor;
 
+import farm.dto.farmDTO;
 import farm.dto.ownerDTO;
 import farm.dto.userDTO;
 import farm.main.dao.MainDAO;
@@ -81,7 +84,5 @@ public class MainController {
 		
 		return mv;
 	}
-	
-	
 	
 }

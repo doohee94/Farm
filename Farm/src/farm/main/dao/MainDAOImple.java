@@ -1,11 +1,13 @@
 package farm.main.dao;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import farm.dto.farmDTO;
 import farm.dto.ownerDTO;
 import farm.dto.userDTO;
 

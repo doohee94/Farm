@@ -80,7 +80,7 @@
 						
 <!-- 						</li>         -->
 						<li><a href="main.farm">홈</a></li>         
-                        <li><a href="#">농장찾기</a></li>  
+                        <li><a href="farmlist/farmList.farm">농장찾기</a></li>  
                         <c:choose>
                         	<c:when test="${not empty sessionScope.user_id }">
                         		<li><a href="/farmer/farmer_main.farm">마이페이지</a></li>

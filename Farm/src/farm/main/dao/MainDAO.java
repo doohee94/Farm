@@ -1,5 +1,8 @@
 package farm.main.dao;
 
+import java.util.List;
+
+import farm.dto.farmDTO;
 import farm.dto.ownerDTO;
 import farm.dto.userDTO;
 

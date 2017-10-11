@@ -168,7 +168,7 @@ public class FarmownerController {
 	/**
 	 * AddRegion
 	 * 농장추가
-	 * 인자값 : farmDTO 농장정보
+	 * 인자값 : regioninfoDTO 구역정보
 	 */
 	@RequestMapping("/addRegion.farm")
 	public String AddRegion(regioninfoDTO regioninfoDTO){
