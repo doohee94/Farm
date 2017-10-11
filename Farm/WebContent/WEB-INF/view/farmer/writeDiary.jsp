@@ -96,24 +96,24 @@
          
           <!--  내용 -->
     		
-    	<form>
+    	<form action="writeDiary.farm" method="post">
           <div class="form-group">
             <div class="form-row">
 	              <div class="col-md-6">
 	              	<p>1번 사진</p>
-	                <img src="../main/img/imagesize.png" class="upload_image" />
+	                <img src="/resource/main/img/imagesize.png" id="diaryPhoto1" name="diaryPhoto1" class="upload_image" />
 	              </div>
 	              <div class="col-md-6">
 	              	<p>2번 사진</p>
-	                <img src="../main/img/imagesize.png" class="upload_image" />
+	                <img src="/resource/main/img/imagesize.png"  id="diaryPhoto2" name="diaryPhoto2" class="upload_image" />
 	              </div>
 	              <div class="col-md-6">
 	              	<p>3번 사진</p>
-	               <img src="../main/img/imagesize.png" class="upload_image"/>
+	               <img src="/resource/main/img/imagesize.png" id="diaryPhoto3" name="diaryPhoto3"class="upload_image"/>
 	              </div>
 	              <div class="col-md-6">
 	              	<p>4번 사진</p>
-	                <img src="../main/img/imagesize.png" class="upload_image"/>
+	                <img src="/resource/main/img/imagesize.png" id="diaryPhoto4" name="diaryPhoto4" class="upload_image"/>
 	              </div>
             </div>
           </div>
@@ -121,25 +121,26 @@
           <div class="form-group">
           	<div class="col-md-6">
            	 <label for="exampleInputEmail1">제목</label>
-             <input class="form-control" placeholder="제목을 입력하세요">
+             <input class="form-control" id="diaryTitle" name="diaryTitle" placeholder="제목을 입력하세요">
             </div>
           </div>
           <div class="form-group">
               <div class="col-md-6">
                 <label for="exampleInputPassword1">날짜</label>
-                <input class="form-control" id="diaryDate" readonly="readonly"/>
+                <input class="form-control"  id="diaryDate" name="diaryDate" value="${today}" id="diaryDate" readonly="readonly"/>
               </div>
           </div>
           
           <div class="form-group">
               <div class="col-md-6">
                 <label for="exampleInputPassword1">내용</label>
-                <input class="form-control" id="diaryContent"/>
+                <input class="form-control"  id="diaryContent" name="diaryContent" id="diaryContent"/>
               </div>
           </div>
          <div class="form-group">
          <div class="col-md-6">
-          <a class="btn btn-primary btn-block" href="login.html">Register</a>
+           <input class="form-control"  type="submit" id="regist" name="regist" value="등록"/>
+
            </div>
          </div>
         </form>

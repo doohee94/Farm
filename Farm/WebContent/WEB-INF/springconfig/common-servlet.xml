@@ -24,6 +24,8 @@
 <!-- 				<value>classpath:tm/alliance/mapper/*.xml</value> src밑에 경로명 -->
 				<value>classpath:farm/test/mapper/*.xml</value>
 				<value>classpath:farm/main/mapper/*.xml</value>
+				<value>classpath:farm/farmer/mapper/*.xml</value>
+				<value>classpath:farm/farmowner/mapper/*.xml</value>
 			</array>
 		</property>
 	</bean>

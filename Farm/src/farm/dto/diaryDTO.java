@@ -1,5 +1,7 @@
 package farm.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class diaryDTO {
 
 	int diaryNum;
@@ -15,6 +17,10 @@ public class diaryDTO {
 	String diaryPhoto4;
 	String diaryPhoto4fake;
 	String userId;
+	
+	
+	MultipartFile  photo1,photo2,photo3,photo4;
+	
 	
 	public int getDiaryNum() {
 		return diaryNum;

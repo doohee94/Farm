@@ -18,6 +18,7 @@
   		/WEB-INF/springconfig/test-servlet.xml
   		/WEB-INF/springconfig/main-servlet.xml
   		/WEB-INF/springconfig/farmer_servlet.xml
+  		/WEB-INF/springconfig/farmowner-servlet.xml
   		</param-value>	
   	</init-param>	
   	</servlet>

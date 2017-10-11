@@ -23,5 +23,11 @@
 	도히꺼
 	<br/><a href="farm/main.farm">메인으로가기!</a>
 	<br/><a href="farmer/farmer_main.farm">농사꾼메인 으로가기!</a>
+	
+	
+	농장주 마이페이지
+	<a href="farmowner/ownerInfo.farm">농장주마이페이지(내정보)</a>
+	
+	<a href="main/farmlist.farm">농장검색리스트</a>
 </body>
 </html>

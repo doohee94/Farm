@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 
@@ -13,7 +14,8 @@
 <meta name="author" content="">
 <title>famerMyinfo</title>
 <!-- Bootstrap core CSS-->
-<link href="/resource/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resource/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 <!-- Custom fonts for this template-->
 <link href="/resource/vendor/font-awesome/css/font-awesome.min.css"
 	rel="stylesheet" type="text/css">
@@ -30,7 +32,7 @@
 	<!-- Navigation-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
 		id="mainNav">
-		<a class="navbar-brand" href="#">농장주님 마이페이지</a>
+		<a class="navbar-brand" href="ownerInfo.farm">농장주님 마이페이지</a>
 		<button class="navbar-toggler navbar-toggler-right" type="button"
 			data-toggle="collapse" data-target="#navbarResponsive"
 			aria-controls="navbarResponsive" aria-expanded="false"
@@ -40,17 +42,18 @@
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
 				<li class="nav-item" data-toggle="tooltip" data-placement="right"
-					title="myInfo"><a class="nav-link" href="#"> <i
-						class="fa fa-fw fa-dashboard"></i> <span class="nav-link-text">내
+					title="myInfo"><a class="nav-link" href="ownerInfo.farm">
+						<i class="fa fa-fw fa-dashboard"></i> <span class="nav-link-text">내
 							정보</span>
 				</a></li>
 				<li class="nav-item" data-toggle="tooltip" data-placement="right"
-					title="FarmManage"><a class="nav-link" href="#"> <i
-						class="fa fa-fw fa-area-chart"></i> <span class="nav-link-text">농장관리</span>
+					title="FarmManage"><a class="nav-link" href="farmManage.farm">
+						<i class="fa fa-fw fa-area-chart"></i> <span class="nav-link-text">농장관리</span>
 				</a></li>
 				<li class="nav-item" data-toggle="tooltip" data-placement="right"
-					title="Tables"><a class="nav-link" href="#"> <i
-						class="fa fa-fw fa-table"></i> <span class="nav-link-text">분양관리</span>
+					title="Tables"><a class="nav-link"
+					href="distributionManage.farm"> <i class="fa fa-fw fa-table"></i>
+						<span class="nav-link-text">분양관리</span>
 				</a></li>
 
 			</ul>
@@ -84,30 +87,34 @@
 							<th>신청자</th>
 							<th>분양기간</th>
 							<th>신청일</th>
-							<th>입금액</th>
 							<th>승인여부</th>
 						</tr>
 					</thead>
 
-					<%
-						for (int i = 0; i < 10; i++) {
-					%>
-					<tr>
-						<td><%=i + 1%></td>
-						<td><%=i + 1%>농장</td>
-						<td><%=i + 1%>구역</td>
-						<td><%=i + 1%>신청자</td>
-						<td><%=i + 1%>까지</td>
-						<td><%=i + 1%>일ㅇㄹㅇㅇㅇㄹㅇㄴㄹㄴㅇㄹㄴㅇㄹ</td>
-						<td><%=i + 1%>원</td>
-						<td><a class='btn btn-info btn-xs'
-							href="#"><span class="glyphicon glyphicon-edit"></span> 승인</a>
-							<a href="#" class="btn btn-danger btn-xs reject"><span class="glyphicon glyphicon-remove"></span> 거절</a>
-						</td>
-					</tr>
-					<%
-						}
-					%>
+					<c:choose>
+						<c:when test="${rentList == null}">
+							<tr>
+								<td>분양신청이 없습니다</td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${rentList }" var="rl">
+								<tr>
+									<td>${rl.rentNum }</td>
+									<td>${rl.farmName }</td>
+									<td>${rl.regionName }</td>
+									<td>${rl.userId }</td>
+									<td>${rl.rentStartdate } 부터 ${rl.rentEnddate } 까지</td>
+									<td>${rl.rentDate }</td>
+									<td><a class='btn btn-info btn-xs' href="#"><span
+											class="glyphicon glyphicon-edit"></span> 승인</a> <a href="#"
+										class="btn btn-danger btn-xs reject"><span
+											class="glyphicon glyphicon-remove"></span> 거절</a></td>
+								</tr>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+
 				</table>
 
 

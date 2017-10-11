@@ -12,7 +12,12 @@
 	<typeAliases>
  		<typeAlias alias="testDTO" type="farm.test.dto.testDTO" /> 
  		<typeAlias alias="userDTO" type="farm.dto.userDTO" /> 
- 		<typeAlias alias="ownerDTO" type="farm.dto.ownerDTO" /> 
+ 		<typeAlias alias="ownerDTO" type="farm.dto.ownerDTO" />
+ 		<typeAlias alias="farmDTO" type="farm.dto.farmDTO" /> 
+ 		<typeAlias alias="farmrentDTO" type="farm.dto.farmrentDTO" /> 
+ 		<typeAlias alias="regioninfoDTO" type="farm.dto.regioninfoDTO" /> 
+ 		<typeAlias alias="diaryDTO" type="farm.dto.diaryDTO" />
+ 		<typeAlias alias="ownerrentDTO" type="farm.dto.ownerrentDTO" /> 
 	</typeAliases>
 
 </configuration>

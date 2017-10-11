@@ -89,13 +89,13 @@
       <!-- Breadcrumbs-->
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
-          <a href="farmInfo.jsp">내농사</a>
+          <a href="farmInfo.farm">내농사</a>
         </li>
         <li class="breadcrumb-item active">농사일기</li>
       </ol>
       <div class="row">
         <div class="col-12">
-          
+          <!--  달력 -->
           <div id='calendar'></div>
           
         </div>

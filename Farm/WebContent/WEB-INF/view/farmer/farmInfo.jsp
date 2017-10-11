@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%> 
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +12,8 @@
   <meta name="author" content="">
   <title>SB Admin - Start Bootstrap Template</title>
   <!-- 다음 지도 api -->
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=67813a71bdca38b8913e2c5e908efdb7"></script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=67813a71bdca38b8913e2c5e908efdb7&libraries=services,clusterer,drawing"></script>
+  
   
   <!-- Bootstrap core CSS-->
   <link href="/resource/farmer/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -97,50 +99,64 @@
         <div class="col-12">
          
           <!--  내용 -->
-       <div class="right_side">
-       <div class="card-body"> 
-       
-       <div class="form-group">
-        <img src="../main/img/dong_logo.png"  class="myPhoto">  
-       </div>  	
-             
-          <div class="form-group">
-            <div class="form-group">
-              <div class="col-md-6">
-                <label for="exampleInputName">농장명</label>
-                <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" readonly="readonly">
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-           <div class="col-md-6">
-            <label for="exampleInputEmail1">농장주</label>
-            <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp"readonly="readonly">
-          </div>
-          </div>
-          <div class="form-group">
-           <div class="col-md-6">
-            <label for="exampleInputEmail1">주소</label>
-            <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp"readonly="readonly">
-          </div>
-          </div>
-          <div class="form-group">
-           <div class="col-md-6">
-            <label for="exampleInputEmail1">연락처</label>
-            <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp"readonly="readonly">
-          </div>
-          </div>
-          <div class="form-group">
-           <div class="col-md-6">
-            <label for="exampleInputEmail1">신청크기</label>
-            <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp"readonly="readonly">
-          </div>
-          </div>
-         <!--  지도 -->
-         <div class="form-group" id="map" style="height:400px;"></div>
+     <c:choose>
+    <c:when test="${not empty farmrentDTO}">     
+	       <div class="right_side">
+	       <div class="card-body"> 
+	       <!--  지도 -->
+	       	 <div class="form-row">
+	       	 	  <div class="col-md-6">
+	         <div class="form-group" id="map" style="height:400px;"></div>
+	         </div>
+	      <div class="col-md-6">    
+	       
+	          <div class="form-group">
+	            <div class="form-group">
+	              <div class="col-md-6">
+	                <label for="exampleInputName">농장명</label>
+	                <input class="form-control" value="${farmDTO.farmName}" id="farm_name" type="text" aria-describedby="nameHelp" readonly="readonly">
+	              </div>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	           <div class="col-md-6">
+	            <label for="exampleInputEmail1">주소</label>
+	            <input class="form-control" value="${farmDTO.farmAddr}" id="farm_addr" type="text"  readonly="readonly">
+	          </div>
+	          </div>
+	          <div class="form-group">
+	           <div class="col-md-6">
+	            <label for="exampleInputEmail1">농장연락처</label>
+	            <input class="form-control" value="${farmDTO.farmPhone}" id="farm_phone" type="text"  readonly="readonly">
+	          </div>
+	          </div>
+	          <div class="form-group">
+	           <div class="col-md-6">
+	            <label for="exampleInputEmail1">분양종료날짜</label>
+	            <input class="form-control" value="${farmrentDTO.rentEnddate}" id="rent_enddate" type="text"  readonly="readonly">
+	          </div>
+	          </div>
+	         </div>
+	         </div>
+	         
+	         </div>
+	         </div>
+         </c:when>
+         <c:otherwise>       		
+       		<div class="form-group">
+       			<br/><br/><br/><br/><br/>
+	           <img src="/resource/farmer/img/no_farm.png"/>
+	         </div>
+	         <div class="form-group">
+	         <div class="col-md-6">
+	         	<br/><br/>
+       			<a class="btn btn-primary btn-block" href="#">농장찾기</a>      			
+	         </div>
+	         </div>
+	         
+       	</c:otherwise>
+         </c:choose>
          
-         </div>
-         </div>
         </div>
       </div>
     </div>
@@ -184,16 +200,49 @@
     <script src="/resource/farmer/vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="/resource/farmer/js/sb-admin.min.js"></script>
-    <script type="text/javascript">
-    var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-    var options = { //지도를 생성할 때 필요한 기본 옵션
-    	center: new daum.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-    	level: 3 //지도의 레벨(확대, 축소 정도)
-    };
-
-    var map = new daum.maps.Map(container, options); //지도 생성 및 객체 리턴
-
     
+    
+    <script type="text/javascript">
+    $(function(){
+    	
+	    	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	        mapOption = {
+	            center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+	            level: 3 // 지도의 확대 레벨
+	        };  
+    		//지도생성
+			var map = new daum.maps.Map(mapContainer, mapOption); 
+    		
+    	 	// 주소-좌표 변환 객체를 생성합니다
+    	    var geocoder = new daum.maps.services.Geocoder();
+    		var addr = $("#farm_addr").val();
+    	    // 주소로 좌표를 검색합니다
+    	    geocoder.addressSearch(addr, function(result, status) {
+
+    	        // 정상적으로 검색이 완료됐으면 
+    	         if (status === daum.maps.services.Status.OK) {
+
+    	            var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+
+    	            // 결과값으로 받은 위치를 마커로 표시합니다
+    	            var marker = new daum.maps.Marker({
+    	                map: map,
+    	                position: coords
+    	            });
+
+    	            // 인포윈도우로 장소에 대한 설명을 표시합니다
+    	            var infowindow = new daum.maps.InfoWindow({
+    	                content: '<div style="width:150px;text-align:center;padding:6px 0;">'+$("#farm_name").val()+'</div>'
+    	            });
+    	            infowindow.open(map, marker);
+
+    	            // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+    	            map.setCenter(coords);
+    	        } 
+    	    });    
+    	    
+    });//end function
+   
     
     </script>
   </div>

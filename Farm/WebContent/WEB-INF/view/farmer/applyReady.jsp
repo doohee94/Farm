@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>   
 <!DOCTYPE html>
-<html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,7 +25,9 @@
  	height: 300px; 
  	width: 466px;
   }
-  
+  .#real_price{
+  	width: 466px;
+  }
   </style>
   
   
@@ -109,55 +110,100 @@
 
          	
        <!--  내용 -->
-       <div class="right_side">
-       <div class="card-body"> 
-       
-       <div class="form-group">
-        <img src="../main/img/dong_logo.png"  class="myPhoto">  
-       </div>  	
-             
-          <div class="form-group">
-            <div class="form-group">
-              <div class="col-md-6">
-                <label for="exampleInputName">농장명</label>
-                <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" readonly="readonly">
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-           <div class="col-md-6">
-            <label for="exampleInputEmail1">농장주</label>
-            <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp"readonly="readonly">
-          </div>
-          </div>
-          <div class="form-group">
-           <div class="col-md-6">
-            <label for="exampleInputEmail1">주소</label>
-            <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp"readonly="readonly">
-          </div>
-          </div>
-          <div class="form-group">
-           <div class="col-md-6">
-            <label for="exampleInputEmail1">연락처</label>
-            <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp"readonly="readonly">
-          </div>
-          </div>
-          <div class="form-group">
-           <div class="col-md-6">
-            <label for="exampleInputEmail1">신청크기</label>
-            <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp"readonly="readonly">
-          </div>
-          </div>
-          <div class="form-group">
-           <div class="col-md-6">
-            <label for="exampleInputEmail1">진행상태</label>
-            <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp"readonly="readonly">
-          </div>
-          </div>
-          
-       
-      </div>
-     </div>      	
+   <c:choose>
+    <c:when test="${not empty farmrentDTO}">
+	       	 <div class="right_side">
+	       <div class="card-body">        
+	       <div class="form-group">
+	        <img src="../main/img/dong_logo.png"  class="myPhoto">  
+	       </div>     
+	          <div class="form-group">
+	            <div class="form-group">
+	              <div class="col-md-6">
+	                <label for="exampleInputName">농장명</label>
+	                <input class="form-control" id="farm_name" name="farm_name" value="${farmDTO.farmName }" type="text" aria-describedby="nameHelp" readonly="readonly">
+	              </div>
+	            </div>
+	          </div>
+	          <div class="form-group">
+	           <div class="col-md-6">
+	            <label for="exampleInputEmail1">농장주</label>
+	            <input class="form-control" value="${ownerDTO.ownerId }" id="owner_name" name="owner_name" type="text"  readonly="readonly">
+	          </div>
+	          </div>
+	          <div class="form-group">
+	           <div class="col-md-6">
+	            <label for="exampleInputEmail1">주소</label>
+	            <input class="form-control" value="${farmDTO.farmAddr }" id="farm_addr" name="farm_addr" type="text"  readonly="readonly">
+	          </div>
+	          </div>
+	          <div class="form-group">
+	           <div class="col-md-6">
+	            <label for="exampleInputEmail1">연락처</label>
+	            <input class="form-control" value="${farmDTO.farmPhone }" id="farm_phone" name="farm_phone" type="text"  readonly="readonly">
+	          </div>
+	          </div>
+	          <div class="form-group">
+	          <div class="col-md-6">
+	            <label for="exampleInputEmail1">신청구역</label>
+	            <input class="form-control" value="${regioninfoDTO.regionName}"id="region_name" name="region_name" type="text"  readonly="readonly">
+	          </div>
+	          </div>
+	          <div class="form-group">
+	          <div class="col-md-6">
+	            <label for="exampleInputEmail1">분양 시작날짜</label>
+	            <input class="form-control" value="${farmrentDTO.rentStartdate}" id="rent_startdate" name="rent_startdate" type="text" readonly="readonly">
+	          	 <label for="exampleInputEmail1">분양 종료날짜</label>
+	            <input class="form-control" value="${farmrentDTO.rentEnddate}" id="rent_enddate" name="rent_enddate" type="text" readonly="readonly">
+	          </div>
+	         
+	          </div>
+	          <div class="form-group">
+	           <div class="form-row">
+		           <div class="col-md-6">
+		            <label for="exampleInputEmail1">계좌번호</label>
+		            <input class="form-control"  value="${ownerDTO.ownerAccount}" id="owner_account" name="owner_account" type="text" readonly="readonly">
+		          	</div>
+		          	 <div class="col-md-6">
+		            <label for="exampleInputEmail1">가격</label>
+		            <input type="hidden" id="region_price" value="${regioninfoDTO.regionPrice}">
+		            <input class="form-control" id="real_price" name="real_price" type="text" readonly="readonly">
+					</div>
+	          	
+	          	</div>
+	          </div>
+	          <div class="form-group">
+	           <div class="col-md-6">
+	            <label for="exampleInputEmail1">진행상태</label>
+	            <input type="hidden" id="rent_state" value="${regioninfoDTO.regionRentstate}">
+	            <input class="form-control" id="real_state" name="real_state" type="text"  readonly="readonly">
+	          	</div>
+	          </div>
+	          <div class="form-group">
+	           <div class="col-md-6">
+	             <a class="btn btn-primary btn-block" href="rentCancel.farm?rent_num=${farmrentDTO.rentNum}">분양취소</a>
+	          	</div>
+	          </div>
+	      </div>
+	     </div>
+       	</c:when>
+       	<c:otherwise>       		
+       		<div class="form-group">
+       			<br/><br/><br/><br/><br/>
+	           <img src="/resource/farmer/img/no_rent.png"/>
+	         </div>
+	         <div class="form-group">
+	         <div class="col-md-6">
+	         	<br/><br/>
+       			<a class="btn btn-primary btn-block" href="#">농장찾기</a>
+       			<br/><br/>
+       			<a class="btn btn-primary btn-block" href="farmInfo.farm">내 농장</a>
+	         </div>
+	         </div>
+	         
+       	</c:otherwise>
+       </c:choose>
+      	
       </div>
       </div>
       <!--  정보끝끝 -->
