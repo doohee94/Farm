@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="famerowner">
+
+	<select id="showOwnerInfo" parameterType="hashMap" resultType="ownerDTO">
+		SELECT *
+		FROM owner
+		WHERE owner_id = #{ownerId}
+	</select>
+
+	<select id="rentCount" parameterType="hashMap" resultType="int">
+		SELECT count(rent_num)
+		FROM farmrent
+		WHERE region_num IN (SELECT
+		region_num
+		FROM regioninfo
+		WHERE farm_num IN (SELECT farm_num
+		FROM farm
+		WHERE owner_id = #{ownerId})
+		) AND rent_state=0;
+	</select>
+
+
+	<select id="farmList" parameterType="hashMap" resultType="farmDTO">
+		SELECT
+		*
+		FROM farm
+		WHERE owner_id = #{ownerId}
+		ORDER BY farm_num desc
+	</select>
+
+
+	<select id="regionList" parameterType="hashMap" resultType="regioninfoDTO">
+		SELECT *
+		FROM regioninfo
+		WHERE farm_num = #{farmNum}
+		ORDER BY region_num
+		desc
+	</select>
+
+	<select id="rentList" parameterType="hashMap" resultType="ownerrentDTO">
+		SELECT fr.*,temp.farm_name, temp.owner_id, temp.region_name
+		FROM farmrent AS fr, (SELECT f.farm_name, ri.region_num, f.owner_id, ri.region_name
+							  FROM farm f, regioninfo ri
+							  WHERE f.farm_num = ri.farm_num) 
+							  AS temp
+		WHERE fr.region_num = temp.region_num AND temp.owner_id = #{ownerId} AND rent_state=0;
+	</select>
+	
+	<insert id="addFarm" parameterType="farmDTO">
+		INSERT INTO farm(owner_id, farm_name, farm_addr, farm_phone, farm_size, farm_info, farm_photo, farm_photofake) 
+		VALUES(
+		#{ownerId}, #{farmName}, #{farmAddr}, #{farmPhone}, #{farmSize}, #{farmInfo}, #{farmPhoto}, #{farmPhotofake}
+		)
+	</insert>
+	
+	<insert id="addRegion" parameterType="regioninfoDTO">
+		INSERT INTO regioninfo (farm_num, region_name, region_size, region_maxrentterm, region_price)
+		VALUES(#{farmNum},#{regionName},#{regionSize}, #{regionMaxrentterm}, #{regionPrice})
+	</insert>
+	
+</mapper>

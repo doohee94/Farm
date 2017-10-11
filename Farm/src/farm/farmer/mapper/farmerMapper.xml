@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="farmer">
+	<!-- 내정보 -->
+	<select id="userInfo" parameterType="java.lang.String" resultType="userDTO">
+		SELECT * FROM user WHERE (user_id=#{user_id})
+	</select>
+	
+	<!-- 승인대기상태 -->
+	<select id="farmrentInfo" parameterType="hashMap" resultType="farmrentDTO">
+		SELECT * FROM farmrent WHERE (user_id=#{user_id} AND rent_state=#{state})
+	</select>
+	
+		<!-- 구역정보 -->
+	<select id="regionInfo" parameterType="java.lang.String" resultType="regioninfoDTO">
+		SELECT * FROM regioninfo WHERE (region_num=#{region_num} )
+	</select>
+	
+		<!-- 농장정보 -->
+	<select id="farm" parameterType="java.lang.String" resultType="farmDTO">
+		SELECT * FROM farm WHERE (farm_num=#{farm_num} )
+	</select>
+	
+		<!-- 농장주 -->
+	<select id="owner" parameterType="java.lang.String" resultType="ownerDTO">
+		SELECT * FROM owner WHERE (owner_id=#{owner_id})
+	</select>
+	
+	<!-- 분양취소 -->
+	<update id="rentCancel" parameterType="int">
+		UPDATE farmrent SET rent_state=2 WHERE rent_num=#{rent_num}
+	</update>
+	
+	<!-- 일기쓰기 -->
+	<insert id="insertDiary" parameterType="diaryDTO">
+		INSERT INTO diary(diary_title, diary_date, diary_content,diary_photo1,diary_photo1fake,
+					 	  diary_photo2,diary_photo2fake,diary_photo3,diary_photo3fake,
+						  diary_photo4,diary_photo4fake,user_id )
+		 values(#{diaryTitle},#{diaryDate},#{diaryContent},#{diaryPhoto1},#{diaryPhoto1fake},
+		 		#{diaryPhoto2},#{diaryPhoto2fake},#{diaryPhoto3},#{diaryPhoto3fake},
+		 		#{diaryPhoto4},#{diaryPhoto4fake},#{userId})
+	</insert>
+	
+	<!-- 일기리스트 -->
+	<select id="diaryList" parameterType="java.lang.String" resultType="diaryDTO">
+		SELECT * FROM diary WHERE (user_id = #{user_id})
+	</select>
+	
+</mapper>
