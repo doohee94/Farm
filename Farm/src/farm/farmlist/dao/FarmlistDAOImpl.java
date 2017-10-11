@@ -32,7 +32,7 @@ public class FarmlistDAOImpl implements FarmlistDAO {
 		HashMap map = new HashMap();
 		map.put("farmNum", farmNum);
 		
-		farmDTO farmInfo = ss.selectOne(namespace + ".showFarminfo");
+		farmDTO farmInfo = ss.selectOne(namespace + ".showFarminfo",map);
 		
 		return farmInfo;
 	}

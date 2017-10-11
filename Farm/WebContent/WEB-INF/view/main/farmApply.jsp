@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,10 +16,10 @@
 <link href="/resource/css2/style.css" rel="stylesheet" />
 
 <!-- Theme skin -->
-<link id="t-colors" href="../skins/default.css" rel="stylesheet" />
+<link id="t-colors" href="/resource/skins/default.css" rel="stylesheet" />
 
    <!-- boxed bg -->
-   <link id="bodybg" href="../bodybg/bg1.css" rel="stylesheet" type="text/css" />
+   <link id="bodybg" href="/resource/bodybg/bg1.css" rel="stylesheet" type="text/css" />
    
    <!-- jQuery UI CSS파일 --> 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /> 
@@ -99,7 +100,7 @@
 
 <div class="row">
     <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
-		<form role="form" class="register-form">
+		<div class="register-form">
 			<h2>농장분양 <small>주말농장 분양신청을 해주세요</small></h2>
 			<hr class="colorgraph">
 			이름  
@@ -118,29 +119,30 @@
 			<div class="form-group">
 				<input type="email" name="email" id="email" class="form-control input-lg" value="${userInfo.userEmail }" tabindex="4">
 			</div>
+		
+		<form action="goMain.farm">
+			<input type="hidden" value="${userInfo.userId }" name="userId" id="userId">
 			희망구역
 			<div class="form-group">
+				<select id="regionSelectBox" style="width: 50%">
 				<c:choose>
 					<c:when test="${regionInfo == null }">
 					<!-- 셀렉트박스@@ -->
-				<select id="regionSelectBox" style="width: 50%">
 						<option >구역이 없습니다.</option>
-						</select>
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${regionInfo }" var="ri">
-						<select id="regionSelectBox" style="width: 50%">
-							<option value="${ri.regionNum }">${ri.regionName }  임대가격(개월 당): ${ri.regionSize }</option>
-						</select>
+							<option value="${ri.regionNum }">${ri.regionName }  임대가격(개월 당): ${ri.regionPrice }</option>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose> 
-			</div>
+				</select>
+				</div>
         	농사시작날짜
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-                        <input type="text" name="first_name" id="testDatepicker" class="form-control input-lg" placeholder="First Name" tabindex="1">
+                        <input type="text" name="rentStartdate" id="testDatepicker" class="form-control input-lg" placeholder="마우스를 올리세요" tabindex="1">
 					</div>
 				</div>
 			</div>
@@ -148,16 +150,19 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-                        <input type="text" name="first_name" id="month" class="form-control input-lg" placeholder="First Name" tabindex="1">
+                        <input type="text" name="1" id="month" class="form-control input-lg" placeholder="ex)3" tabindex="1">
 					</div>
 				</div>
 			</div>
 			
+			<input type="hidden" value="" name="rentEnddate" id="rentEnddate">
+			<input type="hidden"  name="rentDate" id="rentDate">
 			<hr class="colorgraph">
 			<div class="row">
-				<div class="col-xs-12 col-md-6"><input type="submit" value="신청하기" class="btn btn-theme btn-block btn-lg" tabindex="7"></div>
+				<div class="col-xs-12 col-md-6"><input type="button" id="apply" value="신청하기" class="btn btn-theme btn-block btn-lg" tabindex="7"></div>
 			</div>
 		</form>
+		</div>
 	</div>
 </div>
 <!-- Modal -->
@@ -231,6 +236,7 @@ jQuery.browser = {};
         jQuery.browser.version = RegExp.$1;
     }
 })();
+
 </script>
 
 <script src="/resource/js2/modernizr.custom.js"></script>
@@ -257,6 +263,13 @@ $(function() {
     $( "#testDatepicker" ).datepicker({
     	
     });
+    
+	$("#apply").click(function(){
+		var startDate = $( "#testDatepicker" ).val();
+		var endDate = $("#rentEnddate").val();
+		var month = $("#month").val();
+		endDate = startDate.getMonth() + month;
+	});
 });
 </script>
 </body>

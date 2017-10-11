@@ -100,7 +100,7 @@
 			style="width: 1000px; height: 1000px; margin-left: 2%; display: inline-block;"></div>
 		<!-- 농장 정보 출력 -->
 		<div style="display: inline-block; width: 800px; margin-right: 2%;">
-			<div align="center">
+
 				<h1>${farmInfo.farmName }</h1>
 				
 				<hr class="colorgraph">
@@ -127,21 +127,19 @@
 				<br></br>
 				<label style="display: inline-block; font-size: 20px;">임대가능구역</label>
 				<div class="form-group">
+				<select id="regionSelectBox" style="width: 50%">
 				<c:choose>
 					<c:when test="${regionInfo == null }">
 					<!-- 셀렉트박스@@ -->
-				<select id="regionSelectBox" style="width: 50%">
 						<option >구역이 없습니다.</option>
-						</select>
 					</c:when>
 					<c:otherwise>
 						<c:forEach items="${regionInfo }" var="ri">
-						<select id="regionSelectBox" style="width: 50%">
-							<option value="${ri.regionNum }">${ri.regionName }  임대가격(개월 당): ${ri.regionSize }</option>
-						</select>
+							<option value="${ri.regionNum }">${ri.regionName }  임대가격(개월 당): ${ri.regionPrice }</option>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose> 
+				</select>
 				</div>
 				<br></br> 
 				소개
@@ -158,9 +156,6 @@
 					<div class="col-xs-12 col-md-6"><input type="submit" value="분양신청" class="btn btn-theme btn-block btn-lg" tabindex="7"></div>
 				</div>
 				</form>
-			</div>
-			<br></br> <br></br> <br></br> <br></br> <br></br> <br></br> <br></br>
-			<br></br>
 		</div>
 
 

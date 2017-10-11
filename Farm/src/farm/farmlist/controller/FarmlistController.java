@@ -61,7 +61,7 @@ public class FarmlistController {
 	@RequestMapping("/goApplyRegion.farm")
 	public ModelAndView GoApplyRegion(HttpSession userId, String farmNum){
 		
-		String id = String.valueOf("maro");	//나중에 세션처리로 바꿔줌
+		String id = String.valueOf("minju");	//나중에 세션처리로 바꿔줌
 		
 		ModelAndView mv = new ModelAndView();
 		
