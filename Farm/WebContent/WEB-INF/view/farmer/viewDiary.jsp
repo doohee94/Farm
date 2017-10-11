@@ -102,16 +102,16 @@
           <div class="form-group">
             <div class="form-row">
 	              <div class="col-md-6">	      
-	                <img src="../main/img/imagesize.png" class="upload_image" />
+	                <img src="/upload/diary/${diaryDTO.diaryPhoto1fake}" class="upload_image" />
 	              </div>
 	              <div class="col-md-6">	             
-	                <img src="../main/img/imagesize.png" class="upload_image" />
+	                <img src="/upload/diary/${diaryDTO.diaryPhoto2fake}"class="upload_image" />
 	              </div>
 	              <div class="col-md-6">	              	
-	               <img src="../main/img/imagesize.png" class="upload_image"/>
+	               <img src="/upload/diary/${diaryDTO.diaryPhoto3fake}" class="upload_image"/>
 	              </div>
 	              <div class="col-md-6">	              	
-	                <img src="../main/img/imagesize.png" class="upload_image"/>
+	                <img src="/upload/diary/${diaryDTO.diaryPhoto4fake}" class="upload_image"/>
 	              </div>
             </div>
           </div>

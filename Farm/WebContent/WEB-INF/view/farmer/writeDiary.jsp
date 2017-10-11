@@ -16,6 +16,14 @@
   <link href="/resource/farmer/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
   <!-- Custom styles for this template-->
   <link href="/resource/farmer/css/sb-admin.css" rel="stylesheet">
+  <style type="text/css">
+  .photo{
+  	display:none; 
+ 
+  }
+  
+  
+  </style>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -99,22 +107,23 @@
     	<form action="writeDiary.farm" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <div class="form-row">
-	              <div class="col-md-6">
-	              	<p>1번 사진</p>
-	                <img src="/resource/main/img/imagesize.png"  class="upload_image" />
-	                <input type="file"  id="photo1" name="photo1">
+	              <div class="col-md-6">	              
+	                <img src="/resource/main/img/imagesize.png"  id="photow1" class="upload_image" />
+	                <input type="file" id="photo1" name="photo1" class="photo">
 	              </div>
-	              <div class="col-md-6">
-	              	<p>2번 사진</p>
-	                <img src="/resource/main/img/imagesize.png"  id="photo2" name="photo2" class="upload_image" />
+	              <div class="col-md-6">	              	
+	                <img src="/resource/main/img/imagesize.png"  id="photow2" name="photow2" class="upload_image" />
+	                <input type="file"  id="photo2" name="photo2"  class="photo">
+	                
 	              </div>
-	              <div class="col-md-6">
-	              	<p>3번 사진</p>
-	               <img src="/resource/main/img/imagesize.png" id="photo3" name="photo3"class="upload_image"/>
+	              <div class="col-md-6">	             
+	               <img src="/resource/main/img/imagesize.png" id="photow3" name="photow3"class="upload_image"/>
+	              <input type="file"  id="photo3" name="phot3" class="photo">
+	              
 	              </div>
-	              <div class="col-md-6">
-	              	<p>4번 사진</p>
-	                <img src="/resource/main/img/imagesize.png" id="photo4" name="photo4" class="upload_image"/>
+	              <div class="col-md-6">	              
+	                <img src="/resource/main/img/imagesize.png" id="photow4" name="photow4" class="upload_image"/>
+	                <input type="file"  id="photo4" name="photo4" class="photo">	                
 	              </div>
             </div>
           </div>
@@ -191,11 +200,103 @@
     <script src="/resource/farmer/vendor/jquery-easing/jquery.easing.min.js"></script>
     <!-- Custom scripts for all pages-->
     <script src="/resource/farmer/js/sb-admin.min.js"></script>
+   	<script type="text/javascript">
+ 		$(function(){
+			//이미지누를 시 file 찾기 창 뜨게 하기
+ 			
+ 			$('#photow1').click(function(e){
+ 	 			e.preventDefault();
+ 	 			$("#photo1").click();
+ 	 		});
+ 			
+ 			$('#photow2').click(function(e){
+	 				e.preventDefault();
+	 				$("#photo2").click();
+	 			});
+ 			
+ 			$('#photow3').click(function(e){
+	 				e.preventDefault();
+	 				$("#photo3").click();
+	 			});
+ 			
+ 			$('#photow4').click(function(e){
+	 				e.preventDefault();
+	 				$("#photo4").click();
+	 			});
+ 			
+
+ 			$('#photo1').change(function(){
+ 		        var val = $(this).val();
+ 		        var thisDom = $(this)[0];
+ 		         
+ 		        console.log("val : " + val);
+ 		        console.log("thisDom : " + thisDom);
+ 		             
+ 		        if (thisDom.files && thisDom.files[0]) {
+ 		            var reader = new FileReader();
+ 		                    reader.onload = function (e) {
+ 		                $('#photow1').attr('src', e.target.result);
+ 		            }
+ 		            reader.readAsDataURL(thisDom.files[0]);
+ 		        }
+ 		    });//end function
+
+ 		   $('#photo2').change(function(){
+		        var val = $(this).val();
+		        var thisDom = $(this)[0];
+		         
+		        console.log("val : " + val);
+		        console.log("thisDom : " + thisDom);
+		             
+		        if (thisDom.files && thisDom.files[0]) {
+		            var reader = new FileReader();
+		                    reader.onload = function (e) {
+		                $('#photow2').attr('src', e.target.result);
+		            }
+		            reader.readAsDataURL(thisDom.files[0]);
+		        }
+		    });//end function
+		    
+		    $('#photo3').change(function(){
+ 		        var val = $(this).val();
+ 		        var thisDom = $(this)[0];
+ 		         
+ 		        console.log("val : " + val);
+ 		        console.log("thisDom : " + thisDom);
+ 		             
+ 		        if (thisDom.files && thisDom.files[0]) {
+ 		            var reader = new FileReader();
+ 		                    reader.onload = function (e) {
+ 		                $('#photow3').attr('src', e.target.result);
+ 		            }
+ 		            reader.readAsDataURL(thisDom.files[0]);
+ 		        }
+ 		    });//end function
+ 		    
+ 		   $('#photo4').change(function(){
+		        var val = $(this).val();
+		        var thisDom = $(this)[0];
+		         
+		        console.log("val : " + val);
+		        console.log("thisDom : " + thisDom);
+		             
+		        if (thisDom.files && thisDom.files[0]) {
+		            var reader = new FileReader();
+		                    reader.onload = function (e) {
+		                $('#photow4').attr('src', e.target.result);
+		            }
+		            reader.readAsDataURL(thisDom.files[0]);
+		        }
+		    });//end function
+ 		 			
+ 			
+ 		});// end function	
    	
+ 
+   	</script>
   
-   
-   
-  </div>
+
+
 </body>
 
 </html>
