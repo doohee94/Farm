@@ -85,6 +85,12 @@ public class FarmerDAOImpl implements FarmerDAO {
 		List<diaryDTO> list = ss.selectList(namespace+".diaryList", user_id);
 		return list;
 	}
+	//일기보기
+	@Override
+	public diaryDTO viewDiary(String id) {
+		diaryDTO dto = ss.selectOne(namespace+".viewDiary", id);
+		return dto;
+	}
 	
 	
 	

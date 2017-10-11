@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>     
+    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -117,19 +119,19 @@
           <div class="form-group">
           	<div class="col-md-6">
            	 <label>제목</label>
-             <input class="viewContent form-control " readonly="readonly">
+             <input class="viewContent form-control " value = "${diaryDTO.diaryTitle}" readonly="readonly">
             </div>
           </div>
           <div class="form-group">
               <div class="col-md-6">
                 <label for="exampleInputPassword1">날짜</label>
-                <input class="viewContent form-control " id="diaryDate" readonly="readonly"/>
+                <input class="viewContent form-control " value = "${diaryDTO.diaryDate}" id="diaryDate" readonly="readonly"/>
               </div>
           </div>  
           <div class="form-group">
               <div class="col-md-6">
                 <label for="exampleInputPassword1">내용</label>
-                <input class="viewContent form-control" id="diaryContent" readonly="readonly"/>
+                <input class="viewContent form-control" value = "${diaryDTO.diaryContent}" id="diaryContent" readonly="readonly"/>
               </div>
           </div>
         

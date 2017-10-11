@@ -96,24 +96,25 @@
          
           <!--  내용 -->
     		
-    	<form action="writeDiary.farm" method="post">
+    	<form action="writeDiary.farm" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <div class="form-row">
 	              <div class="col-md-6">
 	              	<p>1번 사진</p>
-	                <img src="/resource/main/img/imagesize.png" id="diaryPhoto1" name="diaryPhoto1" class="upload_image" />
+	                <img src="/resource/main/img/imagesize.png"  class="upload_image" />
+	                <input type="file"  id="photo1" name="photo1">
 	              </div>
 	              <div class="col-md-6">
 	              	<p>2번 사진</p>
-	                <img src="/resource/main/img/imagesize.png"  id="diaryPhoto2" name="diaryPhoto2" class="upload_image" />
+	                <img src="/resource/main/img/imagesize.png"  id="photo2" name="photo2" class="upload_image" />
 	              </div>
 	              <div class="col-md-6">
 	              	<p>3번 사진</p>
-	               <img src="/resource/main/img/imagesize.png" id="diaryPhoto3" name="diaryPhoto3"class="upload_image"/>
+	               <img src="/resource/main/img/imagesize.png" id="photo3" name="photo3"class="upload_image"/>
 	              </div>
 	              <div class="col-md-6">
 	              	<p>4번 사진</p>
-	                <img src="/resource/main/img/imagesize.png" id="diaryPhoto4" name="diaryPhoto4" class="upload_image"/>
+	                <img src="/resource/main/img/imagesize.png" id="photo4" name="photo4" class="upload_image"/>
 	              </div>
             </div>
           </div>

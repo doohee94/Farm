@@ -46,4 +46,8 @@
 		SELECT * FROM diary WHERE (user_id = #{user_id})
 	</select>
 	
+	<!--  일기보기 -->
+	<select id="viewDiary" parameterType="java.lang.String" resultType="diaryDTO">
+		SELECT * FROM diary WHERE (diary_num = #{id})
+	</select>
 </mapper>

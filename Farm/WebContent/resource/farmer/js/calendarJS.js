@@ -9,7 +9,6 @@ $(function(){
   				 
  			}//end dayClick
  			,eventClick:function(calEvent){ //이벤트를 클릭시 해당 이벤트에 해당하는 일기 보는 페이지로 넘어감
- 				alert("이벤트 이름"+calEvent.title +"id"+calEvent.id);
  				 location.href = "viewDiary.farm?id="+calEvent.id;
 
  			}
@@ -21,7 +20,8 @@ $(function(){
  	            error:function(){
  	            	alert("에러!");
  	            },
- 	           
+ 	           backgroundColor : '#2d7a03',
+ 	          textColor : '#ffffff'
  	        },
  			
   			 })//end fullcalendar

@@ -144,9 +144,6 @@ public class FarmerController {
 		return diaryList;
 	}
 	
-	
-	
-	
 	/**
 	 * 일기쓰기페이지
 	 * */
@@ -172,7 +169,17 @@ public class FarmerController {
 		return mv;
 	}
 	
-	
+	/**
+	 * 일기보기
+	 * */
+	@RequestMapping("viewDiary.farm")
+	public ModelAndView viewDiary(String id) {
+		ModelAndView mv = new ModelAndView();
+		
+		diaryDTO dto = farmerDAO.viewDiary(id);
+		mv.addObject("diaryDTO", dto);
+		return mv;
+	}
 	
 	
 	
