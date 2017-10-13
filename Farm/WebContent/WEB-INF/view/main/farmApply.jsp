@@ -120,7 +120,7 @@
 				<input type="email" name="email" id="email" class="form-control input-lg" value="${userInfo.userEmail }" tabindex="4">
 			</div>
 		
-		<form action="goMain.farm">
+		<form action="goMain.farm" id="rentForm">
 			<input type="hidden" value="${userInfo.userId }" name="userId" id="userId">
 			희망구역
 			<div class="form-group">
@@ -150,7 +150,7 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-                        <input type="text" name="1" id="month" class="form-control input-lg" placeholder="ex)3" tabindex="1">
+                        <input type="text" name="month" id="month" class="form-control input-lg" placeholder="ex)3" tabindex="1">
 					</div>
 				</div>
 			</div>
@@ -261,14 +261,22 @@ jQuery.browser = {};
 <script type="text/javascript">
 $(function() {
     $( "#testDatepicker" ).datepicker({
-    	
+    	dateFormat : "yy-mm-dd",
+    	minDate : new Date()
     });
     
 	$("#apply").click(function(){
+		
 		var startDate = $( "#testDatepicker" ).val();
-		var endDate = $("#rentEnddate").val();
+		
+		var date = new Date(startDate);
 		var month = $("#month").val();
-		endDate = startDate.getMonth() + month;
+		var newdate = date.setMonth(date.getMonth()+month);
+		
+		alert(date);
+
+		//$("#rentForm").submit();
+		
 	});
 });
 </script>

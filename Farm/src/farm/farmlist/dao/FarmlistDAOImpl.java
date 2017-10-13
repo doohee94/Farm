@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import farm.dto.farmDTO;
+import farm.dto.farmrentDTO;
 import farm.dto.regioninfoDTO;
 import farm.dto.userDTO;
 
@@ -77,6 +78,14 @@ public class FarmlistDAOImpl implements FarmlistDAO {
 		userDTO userInfo = ss.selectOne(namespace + ".getUserInfo",map);
 		
 		return userInfo;
+	}
+
+	@Override
+	public int ApplyRent(farmrentDTO farmrentDTO) {
+		
+		int res = ss.insert(namespace + ".applyRent",farmrentDTO);
+		
+		return res;
 	}
 
 }

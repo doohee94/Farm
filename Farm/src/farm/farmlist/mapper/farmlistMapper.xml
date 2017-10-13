@@ -15,15 +15,23 @@
 		WHERE farm_num = #{farmNum}
 	</select>
 	
+	
 	<select id="showRegionInfo" parameterType="hashMap" resultType="regioninfoDTO">
 		SELECT *
 		FROM regionInfo
 		WHERE farm_num = #{farmNum}
 	</select>
 	
+	
 	<select id="getUserInfo" parameterType="hashMap" resultType="userDTO">
 		SELECT *
 		FROM user
 		WHERE user_id = #{userId}
 	</select>
+	
+	
+	<insert id="applyRent" parameterType="farmrentDTO">
+		INSERT INTO farmrent (region_num, user_id, rent_startdate, rent_enddate, rent_state, rent_date) 
+		VALUES(#{regionNum}, #{userId}, #{rentStartdate}, #{rentEnddate}, 0, #{rentDate})
+	</insert>
 </mapper>

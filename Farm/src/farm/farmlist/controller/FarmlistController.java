@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import farm.dto.farmDTO;
+import farm.dto.farmrentDTO;
 import farm.dto.regioninfoDTO;
 import farm.dto.userDTO;
 import farm.farmlist.dao.FarmlistDAO;
@@ -82,6 +83,19 @@ public class FarmlistController {
 			return mv;
 		}
 		
+	}
+	
+	@RequestMapping("/goMain.farm")
+	public ModelAndView GoMain(farmrentDTO farmrentDTO){
+		
+		ModelAndView mv = new ModelAndView();
+		
+		System.out.println(farmrentDTO.getRentStartdate());
+		int res = dao.ApplyRent(farmrentDTO);
+		
+		mv.setViewName("redirect:farm/main.farm");
+		
+		return mv;
 	}
 	
 }
