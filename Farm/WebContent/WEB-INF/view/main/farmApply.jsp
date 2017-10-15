@@ -120,7 +120,7 @@
 				<input type="email" name="email" id="email" class="form-control input-lg" value="${userInfo.userEmail }" tabindex="4">
 			</div>
 		
-		<form action="goMain.farm" id="rentForm">
+		<form action="goMain.farm" id="rentForm" method="get">
 			<input type="hidden" value="${userInfo.userId }" name="userId" id="userId">
 			희망구역
 			<div class="form-group">
@@ -133,6 +133,7 @@
 					<c:otherwise>
 						<c:forEach items="${regionInfo }" var="ri">
 							<option value="${ri.regionNum }">${ri.regionName }  임대가격(개월 당): ${ri.regionPrice }</option>
+							<input type="hidden" value="${ri.regionNum }" id="regionNum" name="regionNum"/>
 						</c:forEach>
 					</c:otherwise>
 				</c:choose> 
@@ -159,7 +160,7 @@
 			<input type="hidden"  name="rentDate" id="rentDate">
 			<hr class="colorgraph">
 			<div class="row">
-				<div class="col-xs-12 col-md-6"><input type="button" id="apply" value="신청하기" class="btn btn-theme btn-block btn-lg" tabindex="7"></div>
+				<div class="col-xs-12 col-md-6"><input type="submit" id="apply" value="신청하기" class="btn btn-theme btn-block btn-lg" tabindex="7"></div>
 			</div>
 		</form>
 		</div>
@@ -271,11 +272,26 @@ $(function() {
 		
 		var date = new Date(startDate);
 		var month = $("#month").val();
-		var newdate = date.setMonth(date.getMonth()+month);
 		
-		alert(date);
+		var endMonth = date.getMonth()+1+parseInt(month);
+		date.setMonth(date.getMonth()+1+parseInt(month));
+		var goDate="";
+		if(date.getMonth() ==0){
+			alert("0이얌");
+			//date.setMonth("12");
+			goDate = date.getFullYear()+"-"+12+"-"+date.getDate();
+		
+		}else{
+			goDate = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate();
 
+		}
+		
+		$("#rentEnddate").val(goDate);
+		
 		//$("#rentForm").submit();
+		
+		
+		
 		
 	});
 });

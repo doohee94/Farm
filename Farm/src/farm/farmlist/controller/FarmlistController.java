@@ -90,10 +90,11 @@ public class FarmlistController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		System.out.println(farmrentDTO.getRentStartdate());
-		int res = dao.ApplyRent(farmrentDTO);
 		
-		mv.setViewName("redirect:farm/main.farm");
+		farmrentDTO.setUserId("test1");
+		//int res = dao.ApplyRent(farmrentDTO);
+		System.out.println(farmrentDTO.getUserId());
+		mv.setViewName("main/main");
 		
 		return mv;
 	}

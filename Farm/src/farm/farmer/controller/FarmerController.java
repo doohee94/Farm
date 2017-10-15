@@ -164,6 +164,12 @@ public class FarmerController {
 		ModelAndView mv = new ModelAndView();
 		diaryDTO.setUserId(String.valueOf(session.getAttribute("user_id")));
 		
+		System.out.println(diaryDTO.getDiaryPhoto1()+ "\n"+diaryDTO.getDiaryPhoto1fake()+
+				diaryDTO.getDiaryPhoto2()+ "\n"+diaryDTO.getDiaryPhoto2fake()+
+				diaryDTO.getDiaryPhoto3()+ "\n"+diaryDTO.getDiaryPhoto3fake()+
+				diaryDTO.getDiaryPhoto4()+ "\n"+diaryDTO.getDiaryPhoto4fake());
+		
+		
 		int res = farmerDAO.writeDiary(diaryDTO);
 		mv.setViewName(dir+"farmDiary");
 		return mv;

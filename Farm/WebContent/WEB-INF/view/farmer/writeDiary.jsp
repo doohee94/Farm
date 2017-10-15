@@ -117,8 +117,8 @@
 	                
 	              </div>
 	              <div class="col-md-6">	             
-	               <img src="/resource/main/img/imagesize.png" id="photow3" name="photow3"class="upload_image"/>
-	              <input type="file"  id="photo3" name="phot3" class="photo">
+	               <img src="/resource/main/img/imagesize.png" id="photow3" name="photow3" class="upload_image"/>
+	              <input type="file"  id="photo3" name="photo3" class="photo">
 	              
 	              </div>
 	              <div class="col-md-6">	              

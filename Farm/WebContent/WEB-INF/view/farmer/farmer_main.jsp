@@ -16,15 +16,170 @@
 <!-- Custom styles for this template-->
 <link href="/resource/farmer/css/sb-admin.css" rel="stylesheet">
 <link href="/resource/farmer/css/main_grap.css" rel="stylesheet">
+<style type="text/css">
 
-<!--  온습도 그래프 -->
-    <!-- MetisMenu CSS -->
-    <link href="/resource/farmer/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="/resource/farmer/dist/css/sb-admin-2.css" rel="stylesheet">
-    <!-- Morris Charts CSS -->
-    <link href="/resource/farmer/vendor/morrisjs/morris.css" rel="stylesheet">
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700,800,900");
+@import url("https://cdn.linearicons.com/free/1.0.0/icon-font.min.css");
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #112233;
+}
 
+.weather-card {
+  margin: 60px auto;
+  height: 740px;
+  width: 450px;
+  background: #fff;
+  box-shadow: 0 1px 38px rgba(0, 0, 0, 0.15), 0 5px 12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+.weather-card .top {
+  position: relative;
+  height: 570px;
+  width: 100%;
+  overflow: hidden;
+  background: url("/resource/farmer/img/weather.jpg") no-repeat;
+  background-size: cover;
+  background-position: center center;
+  text-align: center;
+}
+.weather-card .top .wrapper {
+  padding: 30px;
+  position: relative;
+  z-index: 1;
+}
+.weather-card .top .wrapper .mynav {
+  height: 20px;
+}
+.weather-card .top .wrapper .mynav .lnr {
+  color: #fff;
+  font-size: 20px;
+}
+.weather-card .top .wrapper .mynav .lnr-chevron-left {
+  display: inline-block;
+  float: left;
+}
+.weather-card .top .wrapper .mynav .lnr-cog {
+  display: inline-block;
+  float: right;
+}
+.weather-card .top .wrapper .heading {
+  margin-top: 20px;
+  font-size: 35px;
+  font-weight: 400;
+  color: #fff;
+}
+.weather-card .top .wrapper .location {
+  margin-top: 20px;
+  font-size: 21px;
+  font-weight: 400;
+  color: #fff;
+}
+.weather-card .top .wrapper .temp {
+  margin-top: 20px;
+}
+.weather-card .top .wrapper .temp a {
+  text-decoration: none;
+  color: #fff;
+}
+.weather-card .top .wrapper .temp a .temp-type {
+  font-size: 85px;
+}
+.weather-card .top .wrapper .temp .temp-value {
+  display: inline-block;
+  font-size: 85px;
+  font-weight: 600;
+  color: #fff;
+}
+.weather-card .top .wrapper .temp .deg {
+  display: inline-block;
+  font-size: 35px;
+  font-weight: 600;
+  color: #fff;
+  vertical-align: top;
+  margin-top: 10px;
+}
+.weather-card .top:after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+.weather-card .bottom {
+  padding: 0 30px;
+  background: #fff;
+}
+.weather-card .bottom .wrapper .forecast {
+  overflow: hidden;
+  margin: 0;
+  font-size: 0;
+  padding: 0;
+  padding-top: 20px;
+  max-height: 155px;
+}
+.weather-card .bottom .wrapper .forecast a {
+  text-decoration: none;
+  color: #000;
+}
+.weather-card .bottom .wrapper .forecast .go-up {
+  text-align: center;
+  display: block;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+.weather-card .bottom .wrapper .forecast li {
+  display: block;
+  font-size: 25px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.25);
+  line-height: 1em;
+  margin-bottom: 30px;
+}
+.weather-card .bottom .wrapper .forecast li .date {
+  display: inline-block;
+}
+.weather-card .bottom .wrapper .forecast li .condition {
+  display: inline-block;
+  vertical-align: middle;
+  float: right;
+  font-size: 25px;
+}
+.weather-card .bottom .wrapper .forecast li .condition .temp {
+  display: inline-block;
+  vertical-align: top;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  padding-top: 2px;
+}
+.weather-card .bottom .wrapper .forecast li .condition .temp .deg {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  margin-left: 3px;
+  vertical-align: top;
+}
+.weather-card .bottom .wrapper .forecast li .condition .temp .temp-type {
+  font-size: 20px;
+}
+.weather-card .bottom .wrapper .forecast li.active {
+  color: rgba(0, 0, 0, 0.8);
+}
+.weather-card.rain .top {
+  background: url("/resource/farmer/img/weather2.jpg") no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+
+
+
+
+</style>
 </head>
 
 
@@ -98,35 +253,79 @@
 				<li class="breadcrumb-item"><a href="/farmer/farmer_main.farm">농사꾼님의 농장</a>
 				</li>
 			</ol>
-			<div class="row">
-				<div class="col-12">				
-						<!-- 토양 수분정보 -->
-						<div class="card mb-3">
-							<div class="card-header">
-								<i class="fa fa-area-chart"></i>토양수분 정보
-							</div>
-							<div class="card-body">
-								<canvas id="myAreaChart" width="100%" height="15"></canvas>
-							</div>
-							<div class="card-footer small text-muted">Updated yesterdayat 11:59 PM</div>
-						</div>
-
-					<!-- 온도/습도정보 -->
-					<div class="card mb-3">
-						<div class="card-header">
-							<i class="fa fa-area-chart"></i>온도/습도 정보
-						</div>
-						<div class="flot-chart">
-							<div class="flot-chart-content" id="flot-line-chart"></div>
-						</div>
-						<div class="card-footer small text-muted">Updated yesterdayat 11:59 PM</div>
+			<div class="container">
+	<div class="row">
+		<div class="col">
+			<div class="weather-card one">
+				<div class="top">
+					<div class="wrapper">
+						<h1 class="heading">Clear night</h1>
+						<h3 class="location">Dhaka, Bangladesh</h3>
+						<p class="temp">
+							<span class="temp-value">100</span>
+							<span class="deg">0</span>
+							<a href="javascript:;"><span class="temp-type">C</span></a>
+						</p>
 					</div>
-					<!--  온도/습도 끝 -->
-
-
-
+				</div>
+				<div class="bottom">
+					<div class="wrapper">
+						<ul class="forecast">
+				
+							<li class="active">
+								<span class="date">Yesterday</span>
+								<span class="lnr lnr-sun condition">
+									<span class="temp">23<span class="deg">0</span><span class="temp-type">C</span></span>
+								</span>
+							</li>
+							<li>
+								<span class="date">Tomorrow</span>
+								<span class="lnr lnr-cloud condition">
+									<span class="temp">21<span class="deg">0</span><span class="temp-type">C</span></span>
+								</span>
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
+		</div>
+
+		<div class="col">
+			<div class="weather-card rain">
+				<div class="top">
+					<div class="wrapper">
+						<h1 class="heading">Rainy day</h1>
+						<h3 class="location">Sylhet, Bangladesh</h3>
+						<p class="temp">
+							<span class="temp-value">16</span>
+							<span class="deg">0</span>
+							<a href="javascript:;"><span class="temp-type">C</span></a>
+						</p>
+					</div>
+				</div>
+				<div class="bottom">
+					<div class="wrapper">
+						<ul class="forecast">
+							<a href="javascript:;"><span class="lnr lnr-chevron-up go-up"></span></a>
+							<li class="active">
+								<span class="date">Yesterday</span>
+								<span class="lnr lnr-sun condition">
+									<span class="temp">22<span class="deg">0</span><span class="temp-type">C</span></span>
+								</span>
+							</li>
+							<li>
+								<span class="date">Tomorrow</span>
+								<span class="lnr lnr-cloud condition">
+									<span class="temp">18<span class="deg">0</span><span class="temp-type">C</span></span>
+								</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 		</div>
 		<!-- /.container-fluid-->
 		<!-- /.content-wrapper-->
@@ -174,18 +373,7 @@
 		<script src="/resource/farmer/js/sb-admin.min.js"></script>
 		<!-- Page level plugin JavaScript-->
 		<script src="/resource/farmer/vendor/chart.js/Chart.min.js"></script>
-		<!--  그래프 정보 예제 -->
-		<script src="/resource/farmer/js/chartJS.js"></script>
 		
-		<!--  온습도 그래프 -->
-		<!-- Flot Charts JavaScript -->
-	    <script src="/resource/farmer/vendor/flot/excanvas.min.js"></script>
-	    <script src="/resource/farmer/vendor/flot/jquery.flot.js"></script>
-	    <script src="/resource/farmer/vendor/flot/jquery.flot.pie.js"></script>
-	    <script src="/resource/farmer/vendor/flot/jquery.flot.resize.js"></script>
-	    <script src="/resource/farmer/vendor/flot/jquery.flot.time.js"></script>
-	    <script src="/resource/farmer/vendor/flot-tooltip/jquery.flot.tooltip.min.js"></script>
-	    <script src="/resource/farmer/data/flot-data.js"></script>
 	</div>
 </body>
 

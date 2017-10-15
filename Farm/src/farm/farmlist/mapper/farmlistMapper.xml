@@ -31,7 +31,7 @@
 	
 	
 	<insert id="applyRent" parameterType="farmrentDTO">
-		INSERT INTO farmrent (region_num, user_id, rent_startdate, rent_enddate, rent_state, rent_date) 
-		VALUES(#{regionNum}, #{userId}, #{rentStartdate}, #{rentEnddate}, 0, #{rentDate})
+		INSERT INTO farmrent (region_num ,user_id, rent_startdate, rent_enddate, rent_state, rent_date) 
+		VALUES( #{regionNum},#{userId}, #{rentStartdate}, #{rentEnddate}, 0, now())
 	</insert>
 </mapper>

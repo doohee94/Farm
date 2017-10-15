@@ -104,7 +104,7 @@ public class diaryDTO {
 	         this.diaryPhoto4 = photo4.getOriginalFilename();
 	         //중복방지 파일명처리
 	         String genId = UUID.randomUUID().toString();
-	         this.diaryPhoto1fake = genId + diaryPhoto4;
+	         this.diaryPhoto4fake = genId + diaryPhoto4;
 	         //파일 저장 경로
 	         File f = new File("C:\\Farm\\Farm\\WebContent\\upload\\diary\\"+diaryPhoto4fake);
 	         try {

@@ -105,7 +105,7 @@
 	                <img src="/upload/diary/${diaryDTO.diaryPhoto1fake}" class="upload_image" />
 	              </div>
 	              <div class="col-md-6">	             
-	                <img src="/upload/diary/${diaryDTO.diaryPhoto2fake}"class="upload_image" />
+	                <img src="/upload/diary/${diaryDTO.diaryPhoto2fake}" class="upload_image" />
 	              </div>
 	              <div class="col-md-6">	              	
 	               <img src="/upload/diary/${diaryDTO.diaryPhoto3fake}" class="upload_image"/>
