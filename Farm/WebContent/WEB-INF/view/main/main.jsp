@@ -30,7 +30,7 @@
 </head>
 <body>
 
-
+<a href="raspberry.farm">라즈베리파이 통신</a>
 
 <div id="wrapper">
 	<!-- start header -->

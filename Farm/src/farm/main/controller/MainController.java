@@ -1,6 +1,9 @@
 package farm.main.controller;
 
-import java.util.List;
+
+import java.io.*;
+import java.net.Socket;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,16 +13,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mysql.jdbc.interceptors.SessionAssociationInterceptor;
-
-import farm.dto.farmDTO;
 import farm.dto.ownerDTO;
 import farm.dto.userDTO;
 import farm.main.dao.MainDAO;
 
 @Controller
 @RequestMapping("farm")
-public class MainController {
+public class MainController{
+	
+	public final static int PORT = 1239;
+	public final static String HOST = "192.168.137.100";
+	
 
 	@Autowired
 	MainDAO mainDAO;
@@ -61,7 +65,7 @@ public class MainController {
 	/**
 	 * 로그인
 	 * */
-	@RequestMapping("goLogin.farm")
+	@RequestMapping("/goLogin.farm")
 	public ModelAndView login(HttpSession session, String state, String user_id, String user_pass) {
 		ModelAndView mv = new ModelAndView();
 		
@@ -82,6 +86,44 @@ public class MainController {
 			mv.setViewName(dir+"login");
 		}
 		
+		return mv;
+	}
+	
+	@RequestMapping("/raspberry.farm")
+	public ModelAndView raspberry() {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		
+		Socket client = null;
+		DataInputStream in = null;
+		DataOutputStream out = null;
+		
+		String outData = "없음";
+
+		try{
+			// 1. 서버에 연결하기 위해 소켓 생성(서버 IP, 서버 port)
+				client= new Socket(HOST, PORT);
+			// 2. 소켓의 입출력 스트림 얻기
+				in = new DataInputStream( client.getInputStream());
+				out	= new DataOutputStream( client.getOutputStream());
+			//3. 값을 서버에 전송
+				String inData = "requestData";
+				out.writeUTF(inData);
+			// 4. 서버로부터 응답을 받음
+				outData = in.readLine();	
+				System.out.println("Get from server : " + outData );
+			// 5. 입출력 스트림의 닫음
+				out.close();
+				in.close();
+				client.close();
+		}catch(IOException ex){
+			System.out.println("Error writing.." + ex );
+			ex.printStackTrace();
+		}
+		
+		mv.setViewName(dir + "raspberry");
+		mv.addObject("data",outData);
 		return mv;
 	}
 	
