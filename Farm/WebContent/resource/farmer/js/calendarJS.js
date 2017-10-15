@@ -1,9 +1,10 @@
 $(function(){
   		 $('#calendar').fullCalendar({
-  			 defaultDate: moment().format('YYYY-MM-DD')    
+  			 defaultDate: moment().format('YYYY-MM-DD') 
+  			 ,navLinks: true
   			 ,height: 750
   			 ,weekends: true  //주말 표시 여부
-  			 ,dayClick:function(date){ //날짜를 클릭시 날짜에 해당하는 날의 일기를 쓰는 페이지로 넘어감 				
+  			 ,navLinkDayClick:function(date){ //날짜를 클릭시 날짜에 해당하는 날의 일기를 쓰는 페이지로 넘어감 				
   				 var today = date.toISOString();
   				 location.href = "gowriteDiary.farm?today="+today;
   				 

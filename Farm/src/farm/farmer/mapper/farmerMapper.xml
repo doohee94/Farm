@@ -50,4 +50,9 @@
 	<select id="viewDiary" parameterType="java.lang.String" resultType="diaryDTO">
 		SELECT * FROM diary WHERE (diary_num = #{id})
 	</select>
+	<!-- 일기 삭제 -->
+	<delete id="deleteDiary" parameterType="int">
+		DELETE FROM diary WHERE (diary_num = #{id})
+	
+	</delete>
 </mapper>

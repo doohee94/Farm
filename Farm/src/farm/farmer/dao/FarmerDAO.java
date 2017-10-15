@@ -35,4 +35,6 @@ public interface FarmerDAO {
 	public List<diaryDTO> diaryList(String user_id);
 	//일기보기
 	public diaryDTO viewDiary(String id);
+	//일기삭제
+	public int deleteDiary(String id);
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>   
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
@@ -180,6 +181,11 @@ body {
 
 
 </style>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=67813a71bdca38b8913e2c5e908efdb7&libraries=services,clusterer,drawing"></script>
+
+
+
 </head>
 
 
@@ -259,10 +265,10 @@ body {
 			<div class="weather-card one">
 				<div class="top">
 					<div class="wrapper">
-						<h1 class="heading">Clear night</h1>
-						<h3 class="location">Dhaka, Bangladesh</h3>
+						<h1 class="heading">농장 날씨</h1>
+						<h3 class="location">농장 주소 뿌리기</h3>
 						<p class="temp">
-							<span class="temp-value">100</span>
+							<span class="temp-value">${t}</span>
 							<span class="deg">0</span>
 							<a href="javascript:;"><span class="temp-type">C</span></a>
 						</p>
@@ -273,15 +279,15 @@ body {
 						<ul class="forecast">
 				
 							<li class="active">
-								<span class="date">Yesterday</span>
+								<span class="date">현재 온도</span>
 								<span class="lnr lnr-sun condition">
-									<span class="temp">23<span class="deg">0</span><span class="temp-type">C</span></span>
+									<span class="temp">${t}<span class="deg">0</span><span class="temp-type">C</span></span>
 								</span>
 							</li>
 							<li>
-								<span class="date">Tomorrow</span>
+								<span class="date">현재 습도</span>
 								<span class="lnr lnr-cloud condition">
-									<span class="temp">21<span class="deg">0</span><span class="temp-type">C</span></span>
+									<span class="temp">${h}<span class="temp-type">%</span></span>
 								</span>
 							</li>
 						</ul>
@@ -294,10 +300,10 @@ body {
 			<div class="weather-card rain">
 				<div class="top">
 					<div class="wrapper">
-						<h1 class="heading">Rainy day</h1>
-						<h3 class="location">Sylhet, Bangladesh</h3>
+						<h1 class="heading">지역 날씨</h1>
+						<h3 class="location">농장 지역 뿌리기</h3>
 						<p class="temp">
-							<span class="temp-value">16</span>
+							<span class="temp-value" id="nowTemp1"></span>
 							<span class="deg">0</span>
 							<a href="javascript:;"><span class="temp-type">C</span></a>
 						</p>
@@ -306,17 +312,16 @@ body {
 				<div class="bottom">
 					<div class="wrapper">
 						<ul class="forecast">
-							<a href="javascript:;"><span class="lnr lnr-chevron-up go-up"></span></a>
 							<li class="active">
-								<span class="date">Yesterday</span>
+								<span class="date">현재 온도</span>
 								<span class="lnr lnr-sun condition">
-									<span class="temp">22<span class="deg">0</span><span class="temp-type">C</span></span>
+									<span class="temp" id="nowTemp2"><span class="deg">0</span><span class="temp-type">C</span></span>
 								</span>
 							</li>
 							<li>
-								<span class="date">Tomorrow</span>
+								<span class="date">현재 습도</span>
 								<span class="lnr lnr-cloud condition">
-									<span class="temp">18<span class="deg">0</span><span class="temp-type">C</span></span>
+									<span class="temp" id = "nowHu"><span class="temp-type">%</span></span>
 								</span>
 							</li>
 						</ul>
@@ -359,9 +364,13 @@ body {
 						<button class="btn btn-secondary" type="button"
 							data-dismiss="modal">Cancel</button>
 						<a class="btn btn-primary" href="login.html">Logout</a>
+						
 					</div>
 				</div>
 			</div>
+			
+			<input type="hidden" id="lon"/>
+			<input type="hidden" id="lat"/>
 		</div>
 		<!-- Bootstrap core JavaScript-->
 		<script src="/resource/farmer/vendor/jquery/jquery.min.js"></script>
@@ -371,8 +380,53 @@ body {
 		<script src="/resource/farmer/vendor/jquery-easing/jquery.easing.min.js"></script>
 		<!-- Custom scripts for all pages-->
 		<script src="/resource/farmer/js/sb-admin.min.js"></script>
-		<!-- Page level plugin JavaScript-->
-		<script src="/resource/farmer/vendor/chart.js/Chart.min.js"></script>
+
+		<script type="text/javascript">
+			
+		$(function(){
+			var lon = "";
+			var lat = "";
+			//위도경도 구하기
+			var geocoder = new daum.maps.services.Geocoder();
+			// 주소로 좌표를 검색합니다
+			geocoder.addressSearch("인천광역시 남동구 석정로 540-6", function(result, status) {
+			// 정상적으로 검색이 완료됐으면 
+			if (status === daum.maps.services.Status.OK) {
+			    lat = result[0].y; //38 위도
+			    lon = result[0].x; //126
+		
+			   
+			    $.ajax({
+					url : "http://apis.skplanetx.com/weather/current/hourly",
+					data:{
+						"lat": result[0].y,
+						"lon":result[0].x,
+						"version":"1",
+						"appKey" : "65e16fa9-7caa-3142-9757-66d0ae8dd0f0"
+						
+					},
+					success:function(data){
+						var temp = data.weather.hourly[0].temperature.tc;
+						var hu = data.weather.hourly[0].humidity;
+						
+						$("#nowTemp1").text(temp);
+						$("#nowTemp2").text(temp);
+						$("#nowHu").text(hu);
+					},
+					error:function(err){
+				         alert("정보얻어오기실패!"+err.status);
+				      }
+					
+					
+				});//end ajax
+			    
+			    
+			   }//end if
+			});//end geocoder
+			
+		});
+		
+		</script>
 		
 	</div>
 </body>

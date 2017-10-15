@@ -92,6 +92,13 @@ public class FarmerDAOImpl implements FarmerDAO {
 		return dto;
 	}
 	
+	//일기삭제
+	@Override
+	public int deleteDiary(String id) {
+		int res = ss.delete(namespace+".deleteDiary", Integer.parseInt(id));
+		return res;
+	}
+	
 	
 	
 

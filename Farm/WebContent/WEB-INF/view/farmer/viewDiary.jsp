@@ -134,7 +134,12 @@
                 <input class="viewContent form-control" value = "${diaryDTO.diaryContent}" id="diaryContent" readonly="readonly"/>
               </div>
           </div>
-        
+           <div class="form-group">
+              <div class="col-md-6">
+                 <a class="btn btn-primary btn-block" href="diaryDelete.farm?id=${diaryDTO.diaryNum}">삭제</a>
+              </div>
+          </div>
+       	
          </div>
         </div>
       </div>
