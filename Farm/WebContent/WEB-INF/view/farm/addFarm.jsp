@@ -78,10 +78,10 @@
     <div class="card card-register mx-auto mt-5">
       <div class="card-header">농장 등록</div>
       <div class="card-body">
-        <form action="addFarm.farm">
+        <form action="addFarm.farm" method="post"  enctype="multipart/form-data">
         <div class="col-md-3 img-portfolio " style="margin-bottom: 2px;">
                <img style="width:450px; height:200px" class="img-responsive img-hover" id="farmPhotow" src="http://placehold.it/750x450" alt="">
-               <input type="file" name="farmPhoto" id="farmPhoto" class="photo">
+               <input type="file" name="photo1" id="photo1" class="photo">
             </div>
           <div class="form-group">
             <div class="form-row">

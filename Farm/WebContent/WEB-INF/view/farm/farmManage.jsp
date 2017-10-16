@@ -91,8 +91,7 @@
 									<div class="list-group-item clearfix">
 										<div class="profile-teaser-left">
 											<div class="profile-img">
-												<img
-													src="/upload/${fl.farmPhotofake}" />
+												<img src="/upload/farm/${fl.farmPhotofake}" />
 											</div>
 										</div>
 										<div class="profile-teaser-main">
