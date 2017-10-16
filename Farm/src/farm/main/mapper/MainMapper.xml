@@ -3,8 +3,8 @@
 <mapper namespace="main">
 	<!-- 농사꾼 회원가입 -->
 	<insert id="user_insert" parameterType="userDTO">
-		insert into user(user_id, user_name, user_phone,user_email,user_pass) 
-					values(#{userId},#{userName},#{userPhone},#{userEmail},#{userPass})
+		insert into user(user_id, user_name, user_phone,user_email,user_pass,user_photo, user_photofake) 
+					values(#{userId},#{userName},#{userPhone},#{userEmail},#{userPass},#{userPhoto},#{userPhotofake})
 	</insert>
 	
 	<!-- 농장주 회원가입 -->
@@ -22,4 +22,8 @@
 		SELECT owner_id FROM owner WHERE (owner_id=#{user_id} AND owner_pass=#{user_pass})	
 	</select>
 	
+	<!--  아이디 찾기 -->
+	<select id="checkID" parameterType="java.lang.String" resultType="userDTO">
+		SELECT * FROM user WHERE (user_id=#{id})
+	</select>
 </mapper>

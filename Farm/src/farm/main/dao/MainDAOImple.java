@@ -67,6 +67,14 @@ public class MainDAOImple implements MainDAO {
 			return "Y";
 		}		
 	}
+
+
+	@Override
+	public userDTO checkID(String id) {
+		
+		userDTO res = ss.selectOne(namespace+".checkID", id);
+		return res;
+	}
 	
 	
 }

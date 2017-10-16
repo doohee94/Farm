@@ -107,6 +107,12 @@
 			<h2>Please Sign Up <small>동상이농</small></h2>
 			<hr class="colorgraph">
 			<div class="row">
+			<div class="form-group">
+					<div class="form-group">
+                        <img src="/resource/main/img/imagesize.png"  id="photow1" class="upload_image" />
+	                	<input type="file" id="photo1" name="photo1" class="photo" style="display:none; ">
+					</div>	
+			</div>
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
                         <input type="text" name="userId" id="userId" class="form-control input-lg" placeholder="ID를입력하세요" tabindex="1">
@@ -114,9 +120,9 @@
 				</div>		
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
-                        <input type="text" name="id_check" id="id_check" class="form-control input-lg" tabindex="1">
+                        <input type="text" name="c_id" id="c_id" class="form-control input-lg" tabindex="1" readonly="readonly" style="border: none;">
 					</div>
-				</div>	
+				</div>		
 			</div>
 			<div class="form-group">
 				<input type="text" name="userName" id="userName" class="form-control input-lg" placeholder="이름을 입력하세요" tabindex="3">
@@ -243,9 +249,85 @@
 <script src="/resource/main/js/animate.js"></script>
 <script src="/resource/main/js/custom.js"></script>
 <script type="text/javascript">
+//사진
 
 
 
+
+ $(function(){
+	 
+	 //ID 중복검사
+	 var check = "";
+	 $("#userId").blur(function(){
+		 
+		 $.ajax({
+			 url : "/farm/checkID.farm",
+			 type:"post",
+			 data:{
+				 id : $("#userId").val()
+			 },
+			 success:function(data){
+				 check = data;
+				 
+				 if(data == "Y"){
+					 $("#c_id").val("사용가능한 ID입니다.");
+				 }else{
+					 $("#c_id").val("사용불가능한 ID입니다.");
+				 }
+				
+			 },
+			 error:function(err){
+				 alert("아이디중복체크 오류"+err.status);
+			 }
+			 
+		 });//end ajax
+		
+	 });//end blur
+	 
+	 
+	 //유효성
+	 $("#register").click(function(){
+		 if($("#userId").val() == "" || $("#userName").val() == "" || $("#userPhone").val() == "" 
+			 	|| $("#userEmail").val() == "" || $("#userPass").val() == "" ||$("#password_confirmation").val() == ""){
+		 
+		 alert("모두 입력해주세요!");
+		 
+		 return false;
+	 }else if($("#userPass").val() != $("#password_confirmation").val()){
+	 		alert("비밀번호를 확인해주세요!");
+			return false;
+	 }else if(check == "N"){
+		 alert("아이디를 확인해주세요");
+		 return false;
+	 }
+	 });	 
+	 
+	 $('#photow1').click(function(e){
+			e.preventDefault();
+			$("#photo1").click();
+		});
+	$('#photo1').change(function(){
+	    var val = $(this).val();
+	    var thisDom = $(this)[0];
+	         
+	    if (thisDom.files && thisDom.files[0]) {
+	        var reader = new FileReader();
+	                reader.onload = function (e) {
+	            $('#photow1').attr('src', e.target.result);
+	        }
+	        reader.readAsDataURL(thisDom.files[0]);
+	    }
+	});//end function
+	 
+	 
+	 
+	 
+ }); //end ready
+ 
+ 
+ 
+ 
+ 
 </script>
 
 </body>

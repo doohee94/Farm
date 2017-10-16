@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import farm.dto.ownerDTO;
@@ -44,6 +45,7 @@ public class MainController{
 	public ModelAndView userSign(userDTO userDTO){
 		
 		ModelAndView mv = new ModelAndView();
+		System.out.println(userDTO.getUserPhotofake()+"//"+userDTO.getUserPhoto());
 		int res = mainDAO.insertUser(userDTO);		
 		mv.setViewName(dir+"main");
 		return mv;
@@ -70,9 +72,11 @@ public class MainController{
 		ModelAndView mv = new ModelAndView();
 		
 		String res = null;
+		
 		System.out.println("로그인>>"+state);
 		if(state.equals("0")) {//state가 0일경우 농사꾼 로그인
 			res = mainDAO.loginUser(user_id, user_pass);
+			
 		}else if(state.equals("1")) {//state가 1일경우 농장주 로그인 
 			res = mainDAO.loginOwner(user_id, user_pass);
 		}
@@ -80,6 +84,7 @@ public class MainController{
 		//로그인 후 페이지 이동
 		if(res.equals("Y")) { //로그인 결과가 있을 경우 세션에 아이디 저장 후 메인으로 이동
 			session.setAttribute("user_id", user_id);
+			session.setAttribute("user_state", state);
 			mv.setViewName(dir+"main");
 		}else if(res.equals("N")) { //로그인 결과가 없을경우 다시 로그인 페이지로 리턴			
 			mv.addObject("login_fail", "fail");
@@ -125,6 +130,22 @@ public class MainController{
 		mv.setViewName(dir + "raspberry");
 		mv.addObject("data",outData);
 		return mv;
+	}
+	
+	@RequestMapping("checkID.farm")
+	@ResponseBody
+	public String checkID(String id) {
+		
+		userDTO res = mainDAO.checkID(id);
+		
+		String goDtata = "";
+		if(res == null) {
+			goDtata = "Y"; //사용가능
+		}else {
+			goDtata = "N"; //사용 불가능
+		}
+		
+		return goDtata;
 	}
 	
 }

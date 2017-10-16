@@ -115,7 +115,7 @@
        <div class="card-body"> 
        
        <div class="form-group">
-        <img src="../main/img/dong_logo.png"  class="myPhoto">  
+        <img src="/resource/user/${userDTO.userPhotofake }"  class="myPhoto">  
        </div>  	
              
           <div class="form-group">

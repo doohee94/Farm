@@ -16,4 +16,5 @@ public interface MainDAO {
 	public String loginUser(String user_id, String user_pass);
 	//농장주 로그인
 	public String loginOwner(String user_id, String user_pass);
+	public userDTO checkID(String id);
 }
