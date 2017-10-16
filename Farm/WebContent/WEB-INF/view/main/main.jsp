@@ -82,8 +82,19 @@
 						<li><a href="main.farm">홈</a></li>         
                         <li><a href="/farmlist/farmList.farm">농장찾기</a></li>  
                         <c:choose>
-                        	<c:when test="${not empty sessionScope.user_id }">
-                        		<li><a href="/farmer/farmer_main.farm">마이페이지</a></li>
+                        	<c:when test="${not empty sessionScope.user_id}">
+
+                        			<c:if test="${sessionScope.user_state == 0}">
+                        			<li>
+                        				<a href="/farmer/farmer_main.farm">마이페이지</a>
+                        			</li>
+                        			</c:if>
+                        			<c:if test="${sessionScope.user_state == 1}">
+                        			<li>
+                        				<a href="/farmowner/ownerInfo.farm">마이페이지</a>
+                        			</li>
+                        			</c:if>
+
                         	</c:when>
                         	<c:otherwise>
                         		<li><a href="login.farm">로그인</a></li>
