@@ -113,11 +113,7 @@
        <!--  내용 -->
        <div class="right_side">
        <div class="card-body"> 
-       
-       <div class="form-group">
-        <img src="/resource/user/${userDTO.userPhotofake }"  class="myPhoto">  
-       </div>  	
-             
+
           <div class="form-group">
             <div class="form-group">
               <div class="col-md-6">

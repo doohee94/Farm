@@ -53,32 +53,48 @@ public class FarmerController {
 		DataOutputStream out = null;
 		
 		String outData = "없음";
-
-		try{
-			// 1. 서버에 연결하기 위해 소켓 생성(서버 IP, 서버 port)
-				client= new Socket(HOST, PORT);
-			// 2. 소켓의 입출력 스트림 얻기
-				in = new DataInputStream( client.getInputStream());
-				out	= new DataOutputStream( client.getOutputStream());
-			//3. 값을 서버에 전송
-				String inData = "requestData";
-				out.writeUTF(inData);
-			// 4. 서버로부터 응답을 받음
-				outData = in.readLine();	
-				System.out.println("Get from server : " + outData );
-			// 5. 입출력 스트림의 닫음
-				out.close();
-				in.close();
-				client.close();
-		}catch(IOException ex){
-			System.out.println("Error writing.." + ex );
-			ex.printStackTrace();
+		
+		
+		int state = 1;
+		farmrentDTO farmrentDTO = farmerDAO.farmrentDTO(session,state);
+		//분양중 농장이 있을 경우만 소켓 연결
+		if(farmrentDTO != null) {	
+					try{
+						// 1. 서버에 연결하기 위해 소켓 생성(서버 IP, 서버 port)
+							client= new Socket(HOST, PORT);
+						// 2. 소켓의 입출력 스트림 얻기
+							in = new DataInputStream( client.getInputStream());
+							out	= new DataOutputStream( client.getOutputStream());
+						//3. 값을 서버에 전송
+							String inData = "requestData";
+							out.writeUTF(inData);
+						// 4. 서버로부터 응답을 받음
+							outData = in.readLine();	
+							System.out.println("Get from server : " + outData );
+						// 5. 입출력 스트림의 닫음
+							out.close();
+							in.close();
+							client.close();
+					}catch(IOException ex){
+						System.out.println("Error writing.." + ex );
+						ex.printStackTrace();
+					}
+					
+					//구역정보 가져오기
+					String region_num = String.valueOf(farmrentDTO.getRegionNum());
+					regioninfoDTO regioninfoDTO = farmerDAO.regioninfoDTO(region_num);
+					//농장정보가져오기
+					String farm_num = String.valueOf(regioninfoDTO.getFarmNum());
+					farmDTO farmDTO = farmerDAO.farmDTO(farm_num);
+					
+					String []data = outData.split("/");
+					mv.addObject("farmName",regioninfoDTO.getRegionName());
+					mv.addObject("addr",farmDTO.getFarmAddr());
+					mv.addObject("state","Y");
+					mv.addObject("h", data[0]);
+					mv.addObject("t", data[1]);	
 		}
 		
-	
-		String []data = outData.split("/");
-		mv.addObject("h", data[0]);
-		mv.addObject("t", data[1]);
 		mv.setViewName(dir + "farmer_main");
 		
 		return mv;

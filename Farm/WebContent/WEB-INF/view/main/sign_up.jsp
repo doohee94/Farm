@@ -107,12 +107,6 @@
 			<h2>Please Sign Up <small>동상이농</small></h2>
 			<hr class="colorgraph">
 			<div class="row">
-			<div class="form-group">
-					<div class="form-group">
-                        <img src="/resource/main/img/imagesize.png"  id="photow1" class="upload_image" />
-	                	<input type="file" id="photo1" name="photo1" class="photo" style="display:none; ">
-					</div>	
-			</div>
 				<div class="col-xs-12 col-sm-6 col-md-6">
 					<div class="form-group">
                         <input type="text" name="userId" id="userId" class="form-control input-lg" placeholder="ID를입력하세요" tabindex="1">

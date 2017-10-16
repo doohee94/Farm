@@ -260,13 +260,16 @@ body {
 				</li>
 			</ol>
 			<div class="container">
+		<input type="hidden" id="state" value="${state}"/>	
 	<div class="row">
-		<div class="col">
+	<c:choose>
+		<c:when test="${not empty state }">
+					<div class="col">
 			<div class="weather-card one">
 				<div class="top">
 					<div class="wrapper">
 						<h1 class="heading">농장 날씨</h1>
-						<h3 class="location">농장 주소 뿌리기</h3>
+						<h3 class="location">${farmName}</h3>
 						<p class="temp">
 							<span class="temp-value">${t}</span>
 							<span class="deg">0</span>
@@ -301,7 +304,8 @@ body {
 				<div class="top">
 					<div class="wrapper">
 						<h1 class="heading">지역 날씨</h1>
-						<h3 class="location">농장 지역 뿌리기</h3>
+						<h3 class="location">${addr }</h3>
+						<input type="hidden" value="${addr}" id="addr"/>
 						<p class="temp">
 							<span class="temp-value" id="nowTemp1"></span>
 							<span class="deg">0</span>
@@ -327,6 +331,14 @@ body {
 						</ul>
 					</div>
 				</div>
+		</div></div>
+		
+		</c:when>
+		<c:otherwise>
+			<img src="/resource/farmer/img/no_farm.png"/>		
+		</c:otherwise>
+	</c:choose>
+
 			</div>
 		</div>
 	</div>
@@ -387,14 +399,17 @@ body {
 			var lon = "";
 			var lat = "";
 			//위도경도 구하기
+			
+		if($("#state").val() == "Y"){
+			
 			var geocoder = new daum.maps.services.Geocoder();
+			var addr = $("#addr").val().trim();
 			// 주소로 좌표를 검색합니다
-			geocoder.addressSearch("인천광역시 남동구 석정로 540-6", function(result, status) {
+			geocoder.addressSearch(addr, function(result, status) {
 			// 정상적으로 검색이 완료됐으면 
 			if (status === daum.maps.services.Status.OK) {
 			    lat = result[0].y; //38 위도
 			    lon = result[0].x; //126
-		
 			   
 			    $.ajax({
 					url : "http://apis.skplanetx.com/weather/current/hourly",
@@ -423,7 +438,8 @@ body {
 			    
 			   }//end if
 			});//end geocoder
-			
+		}//end if
+						
 		});
 		
 		</script>
