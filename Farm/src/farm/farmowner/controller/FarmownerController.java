@@ -47,11 +47,11 @@ public class FarmownerController {
 	 * 인자값 : ownerId 농장주 아이디
 	 */
 	@RequestMapping("/ownerInfo.farm")
-	public ModelAndView ShowInfo(HttpSession ownerId){
+	public ModelAndView ShowInfo(HttpSession session){
 		
 		ModelAndView mv = new ModelAndView();
 		
-		String id = String.valueOf("maro");	//나중에 ownerId로 바꿔야함
+		String id = String.valueOf(session.getAttribute("user_id"));	//나중에 ownerId로 바꿔야함
 		
 		//dao에서 농장주 정보 가져옴
 		ownerDTO ownerInfo = dao.showInfo(id);
@@ -73,11 +73,11 @@ public class FarmownerController {
 	 * 인자값 : ownerId 농장주 아이디
 	 */
 	@RequestMapping("/farmManage.farm")
-	public ModelAndView FarmList(HttpSession ownerId) {
+	public ModelAndView FarmList(HttpSession session) {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		String id = String.valueOf("maro");	//나중에 ownerId로 바꿔야함
+		String id = String.valueOf(session.getAttribute("user_id"));	//나중에 ownerId로 바꿔야함
 		
 		List<farmDTO> farmList = dao.showFarmList(id);
 		
@@ -113,11 +113,11 @@ public class FarmownerController {
 	 * 인자값 : regionNum 구역번호
 	 */
 	@RequestMapping("/distributionManage.farm")
-	public ModelAndView DistributionManage(HttpSession ownerId){
+	public ModelAndView DistributionManage(HttpSession session){
 		
 		ModelAndView mv = new ModelAndView();
 		
-		String id = String.valueOf("maro");	//나중에 ownerId로 바꿔야함
+		String id = String.valueOf(session.getAttribute("user_id"));	//나중에 ownerId로 바꿔야함
 		
 		List<ownerrentDTO> rentList = dao.DistributionManage(id);
 		
@@ -227,15 +227,14 @@ public class FarmownerController {
 	public String RejectRegister(String rentNum, String reason){
 		
 		//분양정보 업데이트
-		//int res1 = dao.RejectRegister(rentNum);
+		int res1 = dao.RejectRegister(rentNum);
 		
 		rejectDTO res2 = dao.getRejectInfo(rentNum);
-		System.out.println(res2.getUserEmail());
 		
 		MimeMessage msg = mailSender.createMimeMessage();
         String e_mail=res2.getUserEmail();
-        String content = "거절사유는 다음과 같습니다 /n" + reason;
-       	String title = res2.getUserName()+"님 신청구역 거절 사유입니다.";
+        String content = "거절사유는 다음과 같습니다.  " + reason;
+       	String title = res2.getUserName()+" 님 신청구역 거절 사유입니다.";
        	
         try {
         	//메일 제목
