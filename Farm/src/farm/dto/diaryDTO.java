@@ -40,7 +40,7 @@ public class diaryDTO {
 	         String genId = UUID.randomUUID().toString();
 	         this.diaryPhoto1fake = genId + diaryPhoto1;
 	         //파일 저장 경로
-	         File f = new File("C:\\Farm\\Farm\\WebContent\\upload\\diary\\"+diaryPhoto1fake);
+	         File f = new File("home\\doohee94\\Farm\\Farm\\WebContent\\upload\\diary\\"+diaryPhoto1fake);
 	         try {
 	            photo1.transferTo(f);
 	         } catch (IllegalStateException | IOException e) {
@@ -62,7 +62,7 @@ public class diaryDTO {
 	         String genId = UUID.randomUUID().toString();
 	         this.diaryPhoto2fake = genId + diaryPhoto2;
 	         //파일 저장 경로
-	         File f = new File("C:\\Farm\\Farm\\WebContent\\upload\\diary\\"+diaryPhoto2fake);
+	         File f = new File("home\\doohee94\\Farm\\Farm\\WebContent\\upload\\diary\\"+diaryPhoto2fake);
 	         try {
 	            photo2.transferTo(f);
 	         } catch (IllegalStateException | IOException e) {
@@ -84,7 +84,7 @@ public class diaryDTO {
 	         String genId = UUID.randomUUID().toString();
 	         this.diaryPhoto3fake = genId + diaryPhoto3;
 	         //파일 저장 경로
-	         File f = new File("C:\\Farm\\Farm\\WebContent\\upload\\diary\\"+diaryPhoto3fake);
+	         File f = new File("home\\doohee94\\Farm\\Farm\\WebContent\\upload\\diary\\"+diaryPhoto3fake);
 	         try {
 	            photo3.transferTo(f);
 	         } catch (IllegalStateException | IOException e) {
@@ -106,7 +106,7 @@ public class diaryDTO {
 	         String genId = UUID.randomUUID().toString();
 	         this.diaryPhoto4fake = genId + diaryPhoto4;
 	         //파일 저장 경로
-	         File f = new File("C:\\Farm\\Farm\\WebContent\\upload\\diary\\"+diaryPhoto4fake);
+	         File f = new File("home\\doohee94\\Farm\\Farm\\WebContent\\upload\\diary\\"+diaryPhoto4fake);
 	         try {
 	            photo4.transferTo(f);
 	         } catch (IllegalStateException | IOException e) {

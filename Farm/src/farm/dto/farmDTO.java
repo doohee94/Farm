@@ -34,7 +34,7 @@ public class farmDTO {
 	         String genId = UUID.randomUUID().toString();
 	         this.farmPhotofake = genId + farmPhoto;
 	         //파일 저장 경로
-	         File f = new File("C:\\Farm\\Farm\\WebContent\\upload\\farm\\"+farmPhotofake);
+	         File f = new File("\\home\\doohee94\\Farm\\Farm\\WebContent\\upload\\farm\\"+farmPhotofake);
 	         try {
 	            photo1.transferTo(f);
 	         } catch (IllegalStateException | IOException e) {
