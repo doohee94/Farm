@@ -1,0 +1,35 @@
+파일명 : raspberrytest.py
+
+import socket
+import sys
+import Adafruit_DHT as dht
+HOST = '' #all available interfaces
+PORT = 1239
+
+h,t = dht.read_retry(dht.DHT11,22)
+
+#1. open Socket
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+print('Socket created')
+
+#2. bind to a address and port
+try:
+	s.bind((HOST,PORT))
+except socket.error as msg:
+	print('bind Failed. Error code ' + str(msg[0]) + 'Message: ' msg[1])
+	print('Socket bind complete')
+#3. Listen for incoming connection
+s.listen(10)
+print('Socket now listening')
+
+#keep connecting with the client
+while 1:
+
+	#4. Accept connection
+	conn,addr = s.accept()
+	print('Connected with ' + addr[0] + ' : ' + str(addr[1]))
+	
+	#5. Read/Send
+	data = conn.recv(1024)
+	conn.send(str(h) + '/' + str(t))
+	conn.close()
