@@ -30,8 +30,6 @@
 </head>
 <body>
 
-<a href="raspberry.farm">라즈베리파이 통신</a>
-
 <div id="wrapper">
 	<!-- start header -->
 	<header>
@@ -94,6 +92,10 @@
                         				<a href="/farmowner/ownerInfo.farm">마이페이지</a>
                         			</li>
                         			</c:if>
+                        			
+                        			<li>
+                        				<a href="logout.farm">로그아웃</a>
+                        			</li>
 
                         	</c:when>
                         	<c:otherwise>
@@ -119,28 +121,13 @@
         <div id="main-slider" class="main-slider flexslider">
             <ul class="slides">
               <li>
-                <img src="/resource/main/img/slides/flexslider/1.jpg" alt="" />
-                <div class="flex-caption">
-                    <h3>Modern Design</h3> 
-					<p>Duis fermentum auctor ligula ac malesuada. Mauris et metus odio, in pulvinar urna</p> 
-					<a href="#" class="btn btn-theme">Learn More</a>
-                </div>
+                <img src="/resource/main/img/farm1.JPG" style="width:1150px; height:600px" alt="" />
               </li>
               <li>
-                <img src="/resource/main/img/slides/flexslider/2.jpg" alt="" />
-                <div class="flex-caption">
-                    <h3>Fully Responsive</h3> 
-					<p>Sodales neque vitae justo sollicitudin aliquet sit amet diam curabitur sed fermentum.</p> 
-					<a href="#" class="btn btn-theme">Learn More</a>
-                </div>
+                <img src="/resource/main/img/farm2.JPG" style="width:1150px; height:600px" alt="" />
               </li>
               <li>
-                <img src="/resource/main/img/slides/flexslider/3.jpg" alt="" />
-                <div class="flex-caption">
-                    <h3>Clean & Fast</h3> 
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit donec mer lacinia.</p> 
-					<a href="#" class="btn btn-theme">Learn More</a>
-                </div>
+                <img src="/resource/main/img/farm3.JPG" style="width:1150px; height:600px" alt="" />
               </li>
             </ul>
         </div>

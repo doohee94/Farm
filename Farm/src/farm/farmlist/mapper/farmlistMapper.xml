@@ -36,7 +36,8 @@
 	</insert>
 	
 	<select id="rentState" parameterType="hashMap" resultType="int">
-		SELECT count(rent_num) AS cnt from farmrent
-		WHERE user_id = #{userId} AND rent_state = 0 or 1;
+		SELECT count(rent_num) as cnt 
+		FROM farmrent
+		WHERE user_id = #{userId} AND (rent_state = 0 OR rent_state = 1);
 	</select>
 </mapper>

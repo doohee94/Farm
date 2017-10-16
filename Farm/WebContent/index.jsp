@@ -30,5 +30,8 @@
 	<a href="farmowner/ownerInfo.farm">농장주마이페이지(내정보)</a>
 	
 	<a href="main/farmlist.farm">농장검색리스트</a>
+	
+	<%response.sendRedirect("farm/main.farm"); %>
+	
 </body>
 </html>

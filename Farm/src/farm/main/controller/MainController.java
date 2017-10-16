@@ -94,44 +94,6 @@ public class MainController{
 		return mv;
 	}
 	
-	@RequestMapping("/raspberry.farm")
-	public ModelAndView raspberry() {
-		
-		ModelAndView mv = new ModelAndView();
-		
-		
-		Socket client = null;
-		DataInputStream in = null;
-		DataOutputStream out = null;
-		
-		String outData = "없음";
-
-		try{
-			// 1. 서버에 연결하기 위해 소켓 생성(서버 IP, 서버 port)
-				client= new Socket(HOST, PORT);
-			// 2. 소켓의 입출력 스트림 얻기
-				in = new DataInputStream( client.getInputStream());
-				out	= new DataOutputStream( client.getOutputStream());
-			//3. 값을 서버에 전송
-				String inData = "requestData";
-				out.writeUTF(inData);
-			// 4. 서버로부터 응답을 받음
-				outData = in.readLine();	
-				System.out.println("Get from server : " + outData );
-			// 5. 입출력 스트림의 닫음
-				out.close();
-				in.close();
-				client.close();
-		}catch(IOException ex){
-			System.out.println("Error writing.." + ex );
-			ex.printStackTrace();
-		}
-		
-		mv.setViewName(dir + "raspberry");
-		mv.addObject("data",outData);
-		return mv;
-	}
-	
 	@RequestMapping("checkID.farm")
 	@ResponseBody
 	public String checkID(String id) {
@@ -146,6 +108,14 @@ public class MainController{
 		}
 		
 		return goDtata;
+	}
+	
+	@RequestMapping("/logout.farm")
+	public String Logout(HttpSession session){
+		
+		session.invalidate();
+		
+		return "redirect:main.farm";
 	}
 	
 }

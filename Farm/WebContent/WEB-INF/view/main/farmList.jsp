@@ -49,98 +49,79 @@
 							</ul>
 						</div>
 						<div class="col-md-6">
-							<div id="sb-search" class="sb-search">
-								<form>
-									<input class="sb-search-input"
-										placeholder="Enter your search term..." type="text" value=""
-										name="search" id="search"> <input
-										class="sb-search-submit" type="submit" value=""> <span
-										class="sb-icon-search" title="Click to start searching"></span>
-								</form>
-							</div>
+						<div id="sb-search" class="sb-search">
+							<form>
+								<input class="sb-search-input" placeholder="Enter your search term..." type="text" value="" name="search" id="search">
+								<input class="sb-search-submit" type="submit" value="">
+								<span class="sb-icon-search" title="Click to start searching"></span>
+							</form>
+						</div>
 
 
 						</div>
 					</div>
 				</div>
-			</div>
+			</div>	
+			
+        <div class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html"><img src="/resource/main/img/dong_logo.png" alt="" width="199" height="52" /></a>
+                </div>
+                <div class="navbar-collapse collapse ">
+                    <ul class="nav navbar-nav">
+<!--                         <li class="dropdown active"> -->
+<!-- 							<a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Home <i class="fa fa-angle-down"></i></a> -->
+<!--                             <ul class="dropdown-menu"> -->
+<!--                                 <li><a href="index.html">Home slider 1</a></li> -->
+<!--                                 <li><a href="index2.html">Home slider 2</a></li> -->
+								
+<!--                             </ul>				 -->
+						
+<!-- 						</li>         -->
+						<li><a href="/farm/main.farm">홈</a></li>         
+                        <li><a href="farmList.farm">농장찾기</a></li>  
+                        <c:choose>
+                        	<c:when test="${not empty sessionScope.user_id}">
 
-			<div class="navbar navbar-default navbar-static-top">
-				<div class="container">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target=".navbar-collapse">
-							<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href="index.html"><img
-							src="../img/dong_logo.png" alt="" width="199" height="52" /></a>
-					</div>
-					<div class="navbar-collapse collapse ">
-						<ul class="nav navbar-nav">
-							<!--                         <li class="dropdown active"> -->
-							<!--                      <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Home <i class="fa fa-angle-down"></i></a> -->
-							<!--                             <ul class="dropdown-menu"> -->
-							<!--                                 <li><a href="index.html">Home slider 1</a></li> -->
-							<!--                                 <li><a href="index2.html">Home slider 2</a></li> -->
+                        			<c:if test="${sessionScope.user_state == 0}">
+                        			<li>
+                        				<a href="/farmer/farmer_main.farm">마이페이지</a>
+                        			</li>
+                        			</c:if>
+                        			<c:if test="${sessionScope.user_state == 1}">
+                        			<li>
+                        				<a href="/farmowner/ownerInfo.farm">마이페이지</a>
+                        			</li>
+                        			</c:if>
+                        			
+                        			<li>
+                        				<a href="/farm/logout.farm">로그아웃</a>
+                        			</li>
 
-							<!--                             </ul>             -->
-
-							<!--                   </li>         -->
-							<li><a href="index.html">홈</a></li>
-							<li><a href="portfolio.html">농장찾기</a></li>
-							<li><a href="login.html">로그인</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</header>
+                        	</c:when>
+                        	<c:otherwise>
+                        		<li><a href="/farm/login.farm">로그인</a></li>
+                        	</c:otherwise>
+                        </c:choose>                   
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+	</header>
 		<!-- end header -->
 
 
-
-		<section id="inner-headline">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<ul class="breadcrumb">
-							<li><a href="#"><i class="fa fa-home"></i></a><i
-								class="icon-angle-right"></i></li>
-							<li class="active">Portfolio</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</section>
 		<section id="content">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<h4 class="heading">Recent Works</h4>
-
-						<div id="filters-container" class="cbp-l-filters-button">
-							<div data-filter="*"
-								class="cbp-filter-item-active cbp-filter-item">
-								All
-								<div class="cbp-filter-counter"></div>
-							</div>
-							<div data-filter=".identity" class="cbp-filter-item">
-								Identity
-								<div class="cbp-filter-counter"></div>
-							</div>
-							<div data-filter=".web-design" class="cbp-filter-item">
-								Web Design
-								<div class="cbp-filter-counter"></div>
-							</div>
-							<div data-filter=".graphic" class="cbp-filter-item">
-								Graphic
-								<div class="cbp-filter-counter"></div>
-							</div>
-							<div data-filter=".logo" class="cbp-filter-item">
-								Logo
-								<div class="cbp-filter-counter"></div>
-							</div>
-						</div>
 
 				<!-- 농장리스트 출력 -->
 						<div id="grid-container" class="cbp-l-grid-projects">

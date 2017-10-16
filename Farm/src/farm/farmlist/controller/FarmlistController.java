@@ -26,8 +26,8 @@ public class FarmlistController {
 	
 	
 	/**
+	 * FarmList
 	 * 역할 : 메인에서 농장찾기 버튼을 누르면 농장리스트 출력
-	 * 리턴값 : List
 	 */
 	@RequestMapping("/farmList.farm")
 	public ModelAndView FarmList(){
@@ -42,7 +42,10 @@ public class FarmlistController {
 		return mv;
 	}
 	
-	
+	/**
+	 * ShowFarmInfo
+	 * 역할 : 농장리스트 누르면 농장 정보 출력
+	 */
 	@RequestMapping("/showFarmInfo.farm")
 	public ModelAndView ShowFarmInfo(String farmNum){
 		
@@ -59,16 +62,21 @@ public class FarmlistController {
 		return mv;
 	}
 	
+	/**
+	 * GoApplyRegion
+	 * 역할 : 분양 신청 페이지 이동
+	 */
 	@RequestMapping("/goApplyRegion.farm")
-	public ModelAndView GoApplyRegion(HttpSession userId, String farmNum){
+	public ModelAndView GoApplyRegion(HttpSession session, String farmNum){
 		
-		String id = String.valueOf("minju");	//나중에 세션처리로 바꿔줌
+		String id = String.valueOf(session.getAttribute("user_id"));
 		
 		ModelAndView mv = new ModelAndView();
 		
 		int rentState = dao.RentState(id);
+		System.out.println(rentState);
 		
-		if(userId == null || rentState != 0){
+		if(session.getAttribute("user_id") == null || rentState != 0 || session.getAttribute("user_state") == "1"){
 			
 			mv.addObject("msg",111);
 			mv.setViewName("redirect:showFarmInfo.farm?farmNum="+farmNum);
@@ -88,6 +96,10 @@ public class FarmlistController {
 		
 	}
 	
+	/**
+	 * GoMain
+	 * 역할 : 분양신청 완료 후 메인으로 넘어가기
+	 */
 	@RequestMapping("/goMain.farm")
 	public ModelAndView GoMain(farmrentDTO farmrentDTO){
 		
