@@ -33,6 +33,7 @@
 
 </head>
 <body>
+<input type="hidden" id="alertMsg" value="${msg }">
 
 	<div id="wrapper">
 		<!-- start header -->
@@ -97,9 +98,9 @@
 
 		<!-- 지도부분 -->
 		<div id="map"
-			style="width: 1000px; height: 1000px; margin-left: 2%; display: inline-block;"></div>
+			style="width: 900px; height: 900px; margin-left: 2%; display: inline-block;"></div>
 		<!-- 농장 정보 출력 -->
-		<div style="display: inline-block; width: 800px; margin-right: 2%;">
+		<div style="display: inline-block; width: 800px; height:800px; margin-right: 2%;">
 
 				<h1>${farmInfo.farmName }</h1>
 				
@@ -148,6 +149,8 @@
 						class="form-control input-lg" tabindex="4"
 						value="${farmInfo.farmInfo }">
 				</div>
+				
+				<input type="hidden" id="farmAddr" value="${farmInfo.farmAddr }">
 				
 				<br></br>
 				<form action="goApplyRegion.farm">
@@ -221,15 +224,51 @@
 
 	<!-- 지도 api 키 -->
 	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2664623d7f8ffa2dfcda4fd2c51506f7"></script>
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=2664623d7f8ffa2dfcda4fd2c51506f7&libraries=services"></script>
 	<script>
-		var container = document.getElementById('map');
-		var options = {
-			center: new daum.maps.LatLng(33.450701, 126.570667),
-			level: 3
-		};
+	
+	$(function(){
+	
+	var addr = $("#farmAddr").val();
+	
+	var container = document.getElementById('map');
+	var options = {
+		center: new daum.maps.LatLng(33.450701, 126.570667),
+		level: 3
+	};
 
-		var map = new daum.maps.Map(container, options);
+	var map = new daum.maps.Map(container, options);
+	
+	// 주소-좌표 변환 객체를 생성합니다
+	var geocoder = new daum.maps.services.Geocoder();
+	
+	// 주소로 좌표를 검색합니다
+	geocoder.addressSearch(addr, function(result, status) {
+
+	    // 정상적으로 검색이 완료됐으면 
+	     if (status === daum.maps.services.Status.OK) {
+
+	        var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+
+	        // 결과값으로 받은 위치를 마커로 표시합니다
+	        var marker = new daum.maps.Marker({
+	            map: map,
+	            position: coords
+	        });
+
+	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+	        map.setCenter(coords);
+	    } 
+	});   
+	
+	
+	var msg1 = $("#alertMsg").val();
+	if(msg1 == 111){
+		alert("로그인하지 않았거나 이미 분양중인 구역이 있습니다.");
+	}
+	
+	});
+
 	</script>
 
 </body>

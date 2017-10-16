@@ -66,9 +66,12 @@ public class FarmlistController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		if(userId == null){
+		int rentState = dao.RentState(id);
+		
+		if(userId == null || rentState != 0){
 			
-			mv.setViewName("redirect:farmlist/showFarmInfo.farm?farmNum="+farmNum);
+			mv.addObject("msg",111);
+			mv.setViewName("redirect:showFarmInfo.farm?farmNum="+farmNum);
 			
 			return mv;
 		}
@@ -90,9 +93,7 @@ public class FarmlistController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		
-		farmrentDTO.setUserId("test1");
-		//int res = dao.ApplyRent(farmrentDTO);
+		int res = dao.ApplyRent(farmrentDTO);
 		System.out.println(farmrentDTO.getUserId());
 		mv.setViewName("main/main");
 		

@@ -106,10 +106,10 @@
 									<td>${rl.userId }</td>
 									<td>${rl.rentStartdate } 부터 ${rl.rentEnddate } 까지</td>
 									<td>${rl.rentDate }</td>
-									<td><a class='btn btn-info btn-xs' href="#"><span
-											class="glyphicon glyphicon-edit"></span> 승인</a> <a href="#"
-										class="btn btn-danger btn-xs reject"><span
-											class="glyphicon glyphicon-remove"></span> 거절</a></td>
+									<td><a class='btn btn-info btn-xs' href="okRegister.farm?regionNum=${rl.regionNum }&rentNum=${rl.rentNum}"><span
+											class="glyphicon glyphicon-edit"></span> 승인</a>
+											<a href="goRejectForm.farm?rentNum=${rl.rentNum}&regionName=${rl.regionName}" class="btn btn-danger btn-xs reject">
+											<span class="glyphicon glyphicon-remove"></span> 거절</a></td>
 								</tr>
 							</c:forEach>
 						</c:otherwise>
@@ -159,48 +159,6 @@
 		<script src="/resource/vendor/jquery-easing/jquery.easing.min.js"></script>
 		<!-- Custom scripts for all pages-->
 		<script src="/resource/js/sb-admin.min.js"></script>
-
-		<!-- 팝업 관련 파일 -->
-		<script type="text/javascript" src="/resource/js/alopex-ui.min.js"></script>
-
-		<script type="text/javascript">
-			$(function() {
-				//개인일정 추가 버튼 누르면 팝업 띄우고 결과값 리스트에 저장하는 함수
-				$(".reject").click(function() {
-					$a.popup({
-						url : "rejectPopup.jsp",
-						ifram : true,
-						width : 600,
-						height : 250,
-						callback : function(data) { // $a.close(data) API 사용 시 동작하는 콜백
-							if (data !== null) { // 팝업 우측 상단 x 버튼으로 닫을 경우, $a.close(data); 와 같이 data를 넘겨주지 않으므로 data === null이다.
-								alert(data);
-							}
-						},
-						alias : "flag1",
-						xButtonClickCallback : function(el) {
-							if (el.alias === "flag1") {// 우측 상단 X 버튼으로 닫을 경우 동작하는 콜백
-								if (confirm("저장되지 않은 데이터가 있습니다. 창을 닫으시겠습니까?")) {
-									return true; // true를 return 시, 내부적으로 close 동작이 자동 수행됩니다.
-								} else {
-									return false; // false를 return 시, 내부적으로 close하는 동작을 제어 합니다.
-								}
-							}
-						}
-					});
-				});
-
-				//addTravelPopup에서 입력받은 값을 원래화면(step3.jsp)에 전달
-				$a.page(function() {
-					this.init = function(id, param) {
-						$('#ok2').click(function() { // close 버튼을 누르면
-							var resion = $("#resion").val();
-							$a.close(resion); // 데이터를 팝업을 띄운 윈도우의 callback에 전달 
-						});
-					}
-				});
-			});
-		</script>
 
 	</div>
 </body>

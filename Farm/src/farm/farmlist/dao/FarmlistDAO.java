@@ -19,4 +19,6 @@ public interface FarmlistDAO {
 	public userDTO getUserInfo(String id);
 	
 	public int ApplyRent(farmrentDTO farmrentDTO);
+	
+	public int RentState(String userId);
 }

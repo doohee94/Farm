@@ -2,20 +2,23 @@ package farm.farmowner.controller;
 
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import farm.dto.farmDTO;
-import farm.dto.farmrentDTO;
 import farm.dto.ownerDTO;
 import farm.dto.ownerrentDTO;
 import farm.dto.regioninfoDTO;
+import farm.dto.rejectDTO;
 import farm.farmowner.dao.FarmownerDAO;
 
 @Controller
@@ -24,6 +27,9 @@ public class FarmownerController {
 	
 	@Autowired
 	FarmownerDAO dao;
+	
+	@Autowired
+	protected JavaMailSender mailSender;
 	
 	private String dir = "farm/";
 	
@@ -176,6 +182,80 @@ public class FarmownerController {
 		int res = dao.AddRegion(regioninfoDTO);
 		
 		return "redirect:farmManage.farm";
+	}
+	
+	/**
+	 * OkRegister
+	 * 농장분양 신청 승인
+	 * 인자값 : regionNum 구역번호 rentNum 분양번호
+	 */
+	@RequestMapping("/okRegister.farm")
+	public String OkRegister(String regionNum, String rentNum){
+		
+		//구역정보 업데이트
+		int res1 = dao.OkRegion(regionNum);
+		//분양정보 업데이트
+		int res2 = dao.OkRentInfo(rentNum);
+		
+		return "redirect:distributionManage.farm";
+	}
+	
+	/**
+	 * GoRejectForm
+	 * 농장분양 거절페이지로 이동
+	 * 인자값 : rentNum 분양번호
+	 */
+	@RequestMapping("/goRejectForm.farm")
+	public ModelAndView GoRejectForm(String rentNum, String regionName){
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName(dir+"/reject");
+		mv.addObject("rentNum",rentNum);
+		mv.addObject("regionName",regionName);
+		
+		return mv;
+	}
+	
+	
+	/**
+	 * RejectRegister
+	 * 농장분양 신청 거절
+	 * 인자값 : rentNum 분양번호
+	 */
+	@RequestMapping("/rejectRegister.farm")
+	public String RejectRegister(String rentNum, String reason){
+		
+		//분양정보 업데이트
+		//int res1 = dao.RejectRegister(rentNum);
+		
+		rejectDTO res2 = dao.getRejectInfo(rentNum);
+		System.out.println(res2.getUserEmail());
+		
+		MimeMessage msg = mailSender.createMimeMessage();
+        String e_mail=res2.getUserEmail();
+        String content = "거절사유는 다음과 같습니다 /n" + reason;
+       	String title = res2.getUserName()+"님 신청구역 거절 사유입니다.";
+       	
+        try {
+        	//메일 제목
+        	msg.setSubject(title);
+        	//메일 내용
+			msg.setText(content);
+			//보내는 메일
+			msg.setRecipients(MimeMessage.RecipientType.TO , InternetAddress.parse(e_mail));
+			
+		} catch (MessagingException e) {
+			System.out.println("이메일 작성 실패 : " + e.getMessage());
+		}
+        //메일 전송
+        try {
+        	mailSender.send(msg);
+        }catch(Exception e){
+        	System.out.println("전송 실패 : " + e.getMessage());
+        }
+		
+		return "redirect:distributionManage.farm";
 	}
 	 
 }

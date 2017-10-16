@@ -39,6 +39,7 @@
 		desc
 	</select>
 
+
 	<select id="rentList" parameterType="hashMap" resultType="ownerrentDTO">
 		SELECT fr.*,temp.farm_name, temp.owner_id, temp.region_name
 		FROM farmrent AS fr, (SELECT f.farm_name, ri.region_num, f.owner_id, ri.region_name
@@ -48,6 +49,7 @@
 		WHERE fr.region_num = temp.region_num AND temp.owner_id = #{ownerId} AND rent_state=0;
 	</select>
 	
+	
 	<insert id="addFarm" parameterType="farmDTO">
 		INSERT INTO farm(owner_id, farm_name, farm_addr, farm_phone, farm_size, farm_info, farm_photo, farm_photofake) 
 		VALUES(
@@ -55,9 +57,34 @@
 		)
 	</insert>
 	
+	
 	<insert id="addRegion" parameterType="regioninfoDTO">
 		INSERT INTO regioninfo (farm_num, region_name, region_size, region_maxrentterm, region_price)
 		VALUES(#{farmNum},#{regionName},#{regionSize}, #{regionMaxrentterm}, #{regionPrice})
 	</insert>
 	
+	
+	<update id="okRegion" parameterType="hashMap">
+		UPDATE regioninfo
+		SET region_rentstate = 1 WHERE region_num = #{regionNum}
+	</update>
+	
+	
+	<update id="okRentInfo" parameterType="hashMap">
+		UPDATE farmrent
+		SET rent_state = 1 WHERE rent_num = #{rentNum}
+	</update>
+	
+	
+	<update id="rejectRegister" parameterType="hashMap">
+		UPDATE farmrent
+		SET rent_state = 2 WHERE rent_num = #{rentNum}
+	</update>
+	
+	
+	<select id="getRejectInfo" parameterType="hashMap" resultType="rejectDTO">
+		SELECT fr.*,u.user_name, u.user_email 
+		FROM farmrent AS fr, user AS u
+		WHERE rent_num=#{rentNum} AND rent_state=0;
+	</select>
 </mapper>

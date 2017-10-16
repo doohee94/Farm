@@ -18,6 +18,7 @@
  		<typeAlias alias="regioninfoDTO" type="farm.dto.regioninfoDTO" /> 
  		<typeAlias alias="diaryDTO" type="farm.dto.diaryDTO" />
  		<typeAlias alias="ownerrentDTO" type="farm.dto.ownerrentDTO" /> 
+ 		<typeAlias alias="rejectDTO" type="farm.dto.rejectDTO" /> 
 	</typeAliases>
 
 </configuration>

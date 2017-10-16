@@ -88,4 +88,14 @@ public class FarmlistDAOImpl implements FarmlistDAO {
 		return res;
 	}
 
+	@Override
+	public int RentState(String userId) {
+		
+		HashMap map = new HashMap();
+		map.put("userId", userId);
+		
+		int res = ss.selectOne(namespace + ".rentState");
+		return res;
+	}
+
 }
